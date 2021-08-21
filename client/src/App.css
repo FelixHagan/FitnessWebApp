@@ -1,0 +1,506 @@
+:root {
+    --primary-color: rgba(35, 159, 233, 1.00);
+    --navbar-color: rgb(138, 136, 136);
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+
+
+    /*background-color: rgba(204, 204, 204, 1.00);*/
+    /*background-image: url();*/
+}
+
+.headercontainer {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.header {
+    background-color: var(--primary-color);
+    overflow: hidden;
+    font-size: 1em;
+}
+
+.outercontainer {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.showcase {
+    /*background-image:url('images/tourdefrance.jpg');*/
+    background-repeat: no-repeat;
+    background-position: 0px - 100px;
+    background-size: 100%;
+    min-height: 20em;
+    text-align: center;
+    /*background-color: rgba(204, 204, 204, 1.00);*/
+    overflow: hidden;
+}
+
+/*
+navbar
+*/
+.navbar {
+    background-color: var(--navbar-color);
+    overflow: hidden;
+}
+
+.navbar ul {
+    padding: 0;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+
+.navbar a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1em;
+    padding: .5em;
+    border: 1px solid white;
+    border-radius: .5em;
+    margin-right: 0.5em;
+}
+
+.navbar a:hover {
+    background-color: rgb(184, 183, 183);
+}
+
+.workoutbutton {
+    color: black;
+    background-color: var(--primary-color);
+    text-decoration: none;
+    font-size: 1em;
+    padding: .5em;
+    border: 1px solid black;
+    border-radius: .5em;
+    margin-right: 0.5em;
+}
+
+.outermessagecontainer .workoutbutton {
+    margin-left: 1em;
+}
+
+.mainsection {
+    overflow: hidden;
+    min-height: 1000px;
+}
+
+.workoutsmainsection {
+    width: 100%;
+}
+/*
+.homesectioncontainer {
+    width: 90%;
+    
+    margin: 1em auto;
+    
+}
+*/
+.homesection1 {
+    width: 90%;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    background-color: white;
+    box-shadow: 0.1em 0.1em 0.5em black;
+    margin: 1em auto;
+    border-radius: 0.5em;
+}
+
+.homesection2 {
+    width: 90%;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    background-color: white;
+    flex-direction: row-reverse;
+    box-shadow: 0.1em 0.1em 0.5em black;
+    margin: 1em auto;
+    border-radius: 0.5em;
+}
+
+.homesectionboxes {
+    flex-basis: 20em;
+    margin: 1em;
+    flex-grow: 1;
+}
+/*
+.homesectionboxes h2 {
+    text-align: center;
+}
+*/
+.homesectionboxes p {
+    text-align: left;
+}
+
+.homeimg {
+    max-width: 100%;
+    height: auto;
+    margin-top: 1.5em;
+}
+
+/*
+program styling
+*/
+.programsbox {
+    width: 90%;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    margin: 0 auto;
+    background-color: white;
+    box-shadow: 0.1em 0.1em 0.5em black;
+    margin: 1em auto;
+    border-radius: 0.5em;
+    align-items: center;
+    padding-bottom: 1em;
+}
+
+.programsbox p {
+    margin: 1em;
+}
+
+/*
+overall plan styling
+*/
+.wholeplancontainer {
+    width: 100%;
+    background-color: rgb(39, 38, 38);
+    padding-bottom: 1em;
+}
+
+.buttoncontainer {
+    width: 95%;
+    margin: 0 auto;
+    padding: 1em;
+}
+
+.buttoncontainer p {
+    color: white;
+    text-align: left;
+    border-bottom: dashed white;
+    border-width: 1px;
+}
+
+/*
+weeks plan styling
+*/
+.allweekscontainer {
+    overflow: hidden;
+    width: 95%;
+    margin: 0 auto;
+    background-color: black;
+}
+
+.allweekscontainer p {
+    color: rgb(143, 142, 142);
+}
+
+.weekcontainer {
+    width: 90%;
+    margin: 0 auto;
+    
+}
+
+.daytitle p {
+    text-align: left;
+}
+
+.day {
+    box-shadow: 0.1em 0.1em 0.5em black;
+    margin: 1em auto;
+    border: 1px solid rgb(143, 142, 142);
+    border-radius: 0.5em;
+    background-color: rgb(65, 63, 63);
+    color: white;
+    padding: 0.5em;
+}
+
+.day p {
+    color: white;
+}
+
+/*
+flex box container with a wrap property
+*/
+.workoutscontainer {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    width: 80%;
+    margin: 0 auto;
+}
+
+/*
+boxes to go inside flex box container
+*/ 
+.innerboxes {
+    margin: 0 auto;
+    background-color: white;
+    padding: 1em;
+    margin: 1em;
+    border: 4px solid var(--primary-color);
+    border-radius: .5em;
+    flex-basis: 20em;
+    text-align: center;
+}
+
+/*
+youtube video container
+*/
+.youtube {
+    padding-bottom: 50%;
+    position: relative;
+}
+
+.youtube iframe {
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+}
+
+/*
+individual workout box
+*/
+.workoutbox {
+    background-color: white;
+    padding: 1em;
+    margin: 1em;
+    border: 4px solid var(--primary-color);
+    border-radius: .5em;
+    flex-basis: 100%;
+    text-align: center;
+    box-shadow: 0.1em 0.1em 0.5em black;
+}
+
+.mainfooter {
+    background: rgb(138, 136, 136);
+    padding: 2em;
+    
+}
+
+.whitebutton {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1em;
+    padding: .5em;
+    border: 1px solid white;
+    border-radius: .5em;
+    margin-right: 0.5em;
+}
+/*
+change colour to suit
+*/
+.whitebutton a:hover {
+    background-color: rgb(184, 183, 183);
+}
+
+/*
+table 
+.scrolltable goes on div outside table
+*/
+.scrolltable {
+    overflow-x: auto;
+}
+
+.resultstable{
+    border-collapse: collapse;
+    width: 100%;
+    background-color: white;
+}
+
+.resultstable
+ td, .resultstable th{
+    border: 0.1em solid #ddd;
+    padding: 0.5em;
+}
+.resultstable tr:nth-child(even){
+    background-color: #f2f2f2;
+}
+
+.resultstable tr:hover {
+    background-color: #ddd;
+}
+
+.resultstable th {
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  text-align: left;
+  background-color: #2a2c2a;
+  color: white;
+}
+
+/*
+form
+*/
+.formcontainer{
+    margin: 0 auto;
+    background-color: white;
+    padding: 3em 1em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    border: 4px solid var(--primary-color);
+    border-radius: .5em;
+    flex-basis: 20em;
+    width: 60%;
+}
+
+.formcontainer h2, h3, p {
+    text-align: center;
+}
+
+label {
+    display: inline-block;
+    width: 30%;
+    /*
+    text-align: right;
+    */
+}
+
+input, select{
+    width: 60%;
+    box-sizing: border-box;
+}
+
+textarea {
+    width: 100%;
+    
+}
+
+input:focus, select:focus {
+    border-color: #000;
+}
+
+.labelinputcontainer {
+    margin-top: 1em;
+}
+
+.button {
+    margin-top: 1em;
+    margin-left: 30%;
+}
+
+.buttoncolour {
+    background-color: var(--primary-color);
+}
+
+.burgermenu {
+    display: none;
+}
+
+/*
+styling for the messages in the form
+*/
+.outermessagecontainer {
+    width: 97%;
+    margin: 0 auto;
+}
+
+.messagecontainer {
+    /*border: 2px solid black;*/
+    margin: 1em;
+    border-radius: 0.5em;
+}
+
+.topicuser {
+    background-color: var(--primary-color);
+    display: flex;
+    justify-content: space-between;
+}
+
+.topicuser p {
+    margin: 1em;
+}
+
+.messageuser {
+    background-color: rgb(173, 172, 172);
+    display: flex;
+    justify-content: space-between;
+}
+
+.messageuser p {
+    margin: 1em;
+}
+
+.messagebody {
+    text-align: left;
+    background-color: rgb(238, 236, 236);
+    margin: 0;
+    padding: 1em;
+}
+
+.messagebody p {
+    text-align: left;
+    margin: 0;
+}
+
+.addtopicbutton {
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.forumdivider {
+    margin: 1em;
+}
+
+.forumdivider p {
+    border-bottom: dashed black;
+    border-width: 1px;
+}
+
+@media(max-width: 680px){
+    /*
+    .navbar {
+        display: none;
+    }
+*/
+    .burgermenu {
+        display: block;
+    }
+
+    .nodisplay {
+        display: none;
+    }
+    .mobilenavbar {
+        display: none;
+    }
+
+    .navbar{
+        position: absolute;
+        z-index: 999;
+        background-color: var(--navbar-color);
+        right: 0;
+        top: 10;
+    }
+
+    .navbar ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .navbar li {
+        display: block;
+        margin: 1em;
+    }
+
+    .navbar a {
+        margin: 0;
+        border: none;
+        
+    }  
+
+    
+
+
+}
