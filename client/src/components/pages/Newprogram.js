@@ -1,80 +1,30 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
+import CreateProgramContext from '../../context/createProgram/createProgramContext';
+import NewProgramWeek from '../items/NewProgramWeek';
+import { Link } from 'react-router-dom';
 
+const NewProgram = () => {
+    const createProgramContext = useContext(CreateProgramContext);
 
-const Newprogram = () => {
-   
+    const { newPrograms } = createProgramContext;
 
+    
     return (
-        <div className="allweekscontainer">
-            
-            <div className="weekcontainer">
-            <div className="daytitle">
-                <p>Monday</p>
+        <>
+        {Object.keys(newPrograms).length >= 1 ? (<div className="wholeplancontainer">
+            <div className="buttoncontainer">
+                <Link to='/programs' className="workoutbutton">Back To Programs</Link>
             </div>
             
-            <div className="day">
-                <h3>{run1.name}</h3>
-                <p>{run2.description}</p>
-            </div>
-
-            <div className="daytitle">
-                <p>Tuesday</p>
-            </div>
-            <div className="day">
-                <h3>Rest Day</h3>
-                <p>Take it easy today. You can if you want go a short easy walk or try a bit of stretching 
-                    but there will be no intensity today.
-                </p>
-            </div>
-
-            <div className="daytitle">
-                <p>Wednesday</p>
-            </div>
-            <div className="day">
-                <h3>{run2.name}</h3>
-                <p>{run2.description}</p>
-            </div>
-
-            <div className="daytitle">
-                <p>Thursday</p>
-            </div>
-            <div className="day">
-                <h3>Rest Day</h3>
-                <p>Take it easy today. You can if you want go a short easy walk or try a bit of stretching 
-                    but there will be no intensity today.
-                </p>
-            </div>
-
-            <div className="daytitle">
-                <p>Friday</p>
-            </div>
-            <div className="day">
-                <h3>{run3.name}</h3>
-                <p>{run3.description}</p>
-            </div>
-
-            <div className="daytitle">
-                <p>Saturday</p>
-            </div>
-            <div className="day">
-                <h3>Rest Day</h3>
-                <p>Take it easy today. You can if you want go a short easy walk or try a bit of stretching 
-                    but there will be no intensity today.
-                </p>
-            </div>
-
-            <div className="daytitle">
-                <p>Sunday</p>
-            </div>
-            <div className="day">
-                <h3>Rest Day</h3>
-                <p>Take it easy today. You can if you want go a short easy walk or try a bit of stretching 
-                    but there will be no intensity today.
-                </p>
-            </div>
-        </div>
-        </div>
+            {newPrograms.map(eachNewProgram => (
+                <NewProgramWeek key={eachNewProgram.id} newProgram={eachNewProgram}/> 
+            ))}
+        </div>) : <div className="programsbox"><h2>You have no created programs yet</h2>
+        <Link to='/programs' className="workoutbutton">Back To Programs</Link>
+        </div>}
+        
+        </>
     )
 }
 
-export default Newprogram
+export default NewProgram

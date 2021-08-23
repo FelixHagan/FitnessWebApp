@@ -1,9 +1,6 @@
-import React, { useContext, useState, useEffect } from 'react';
-import MessageItem from '../items/MessageItem';
+import React, { useContext, useState } from 'react';
 import ForumContext from '../../context/forum/forumContext';
-import FormItem from '../items/FormItem';
 
-import { Link } from 'react-router-dom';
 import Messages from './Messages';
 import TopicForum from '../items/TopicForum';
 
@@ -22,7 +19,7 @@ const Forum = () => {
         <>
 
         <div className="outermessagecontainer">
-            {topics.map(individualTopic => (
+            {topics.map((individualTopic, index) => (
                 <>
                     <Messages key={individualTopic.id} individualTopic={individualTopic}/>
                 </>

@@ -3,6 +3,7 @@ import ProgramContext from '../../context/program/programContext';
 import CreateProgramContext from '../../context/createProgram/createProgramContext';
 import ProgramItem from '../items/ProgramItem';
 import NewprogramForum from '../items/NewProgramForum';
+import { Link } from 'react-router-dom';
 
 const Programs = () => {
     const programContext = useContext(ProgramContext);
@@ -33,6 +34,13 @@ const Programs = () => {
                 {viewForm && <NewprogramForum />}
                 {viewForm ? <button className="workoutbutton" onClick={handleClick}>Cancel</button> : <button className="workoutbutton" onClick={handleClick}>Create Program</button>}
                 
+            </div>
+
+            <div className="programsbox">
+                <h2>View Your Created Programs</h2>
+                <p>View the programs that you have created.
+                </p>
+                <Link to='/newProgram' className="workoutbutton">View Created Programs</Link>
             </div>
         </div>
     )

@@ -3,3 +3,7 @@ export const REMOVE_ALERT = 'REMOVE_ALERT';
 export const ADD_MESSAGE = 'ADD_MESSAGE';
 export const ADD_TOPIC = 'ADD_TOPIC';
 export const ADD_PROGRAM ='ADD_PROGRAM';
+export const DELETE_PROGRAM = 'DELETE_PROGRAM';
+export const SET_CURRENT = 'SET_CURRENT';
+export const CLEAR_CURRENT = 'CLEAR_CURRENT';
+export const UPDATE_PROGRAM = 'UPDATE_PROGRAM'

@@ -8,6 +8,7 @@ import Programs from './components/pages/Programs';
 import Forum from './components/pages/Forum';
 import TimerItem from './components/items/TimerItem'
 import Plan from './components/pages/Plan';
+import NewProgram from './components/pages/NewProgram';
 import WorkoutState from './context/workout/WorkoutState';
 import ForumState from './context/forum/ForumState';
 import ProgramState from './context/program/ProgramState';
@@ -30,6 +31,7 @@ const App = () => {
             <Route exact path='/forum' component={Forum} />
             <Route exact path='/timer' component={TimerItem} />
             <Route exact path='/plan' component={Plan} />
+            <Route exact path='/newProgram' component={NewProgram} />
           </Switch>
         </div>
         <div className="mainfooter">

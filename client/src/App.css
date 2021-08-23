@@ -83,13 +83,17 @@ navbar
     margin-right: 0.5em;
 }
 
+.weekcontainer .workoutbutton {
+    margin-bottom: 1em;
+}
+
 .outermessagecontainer .workoutbutton {
     margin-left: 1em;
 }
 
 .mainsection {
     overflow: hidden;
-    min-height: 1000px;
+    min-height: 800px;
 }
 
 .workoutsmainsection {
@@ -389,10 +393,15 @@ input:focus, select:focus {
 .button {
     margin-top: 1em;
     margin-left: 30%;
+    margin-bottom: 1em;
 }
 
 .buttoncolour {
     background-color: var(--primary-color);
+}
+
+.programsbox .formcontainer {
+    width: 90%;
 }
 
 .burgermenu {
@@ -503,4 +512,10 @@ styling for the messages in the form
     
 
 
+}
+
+@media(max-width: 480px){
+    .programsbox .formcontainer {
+        padding: 0;
+    }
 }

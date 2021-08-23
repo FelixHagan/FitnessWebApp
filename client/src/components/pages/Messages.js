@@ -49,7 +49,7 @@ const Messages = ({ individualTopic }) => {
         
         
         <div>
-            {messages.map(individualMessage => (
+            {messages.map((individualMessage, index) => (
                 <MessageItem key={individualMessage.id} individualMessage={individualMessage}/>
             ))}
 

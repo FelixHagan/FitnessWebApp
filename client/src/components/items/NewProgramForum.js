@@ -1,78 +1,89 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import CreateProgramContext from '../../context/createProgram/createProgramContext';
 
 
 const NewProgramForum = () => {
     const createProgramContext = useContext(CreateProgramContext);
 
+    const { addNewProgram, current, clearCurrent, updateProgram } = createProgramContext;
+
+    useEffect(() => {
+        if (current !== null) {
+            setNewProgram(current);
+        } else {
+            setNewProgram({
+                user: "Bob",
+                programName: "",
+                mondayName: "",
+                mondayDescription: "",
+                tuesdayName: "",
+                tuesdayDescription: "",
+                wednesdayName: "",
+                wednesdayDescription: "",
+                thursdayName: "",
+                thursdayDescription: "",
+                fridayName: "",
+                fridayDescription: "",
+                saturdayName: "",
+                saturdayDescription: "",
+                sundayName: "",
+                sundayDescription: "",
+                id: Math.floor(Math.random() * 10000) +1
+            })
+        }
+    }, [createProgramContext, current])
+
     const [newProgram, setNewProgram] = useState({
-        monday: {
-            name: "",
-            description: ""
-        },
-        tuesday: {
-            name: "",
-            description: ""
-        },
-        wednesday: {
-            name: "",
-            description: ""
-        },
-        thursday: {
-            name: "",
-            description: ""
-        },
-        friday: {
-            name: "",
-            description: ""
-        },
-        saturday: {
-            name: "",
-            description: ""
-        },
-        sunday: {
-            name: "",
-            description: ""
-        },
-        id: Math.floor(Math.random() * 10000) +1
+        user: "Bob",
+        programName: "",
+            mondayName: "",
+            mondayDescription: "",
+            tuesdayName: "",
+            tuesdayDescription: "",
+            wednesdayName: "",
+            wednesdayDescription: "",
+            thursdayName: "",
+            thursdayDescription: "",
+            fridayName: "",
+            fridayDescription: "",
+            saturdayName: "",
+            saturdayDescription: "",
+            sundayName: "",
+            sundayDescription: "",
+            id: Math.floor(Math.random() * 10000) +1
     })
 
-    const { monday, tuesday, wednesday, thursday, friday, saturday, sunday} = newProgram;
+    const { mondayName, mondayDescription, tuesdayName, tuesdayDescription, wednesdayName, wednesdayDescription,
+        thursdayName, thursdayDescription, fridayName, fridayDescription, saturdayName, saturdayDescription, 
+        sundayName, sundayDescription, programName} = newProgram;
 
     const onChange = e => setNewProgram({ ...newProgram, [e.target.name]: e.target.value });
 
     const onSubmit = e => {
         e.preventDefault();
-        createProgramContext.addNewProgram(newProgram);
+        if (current === null) {
+            addNewProgram(newProgram);
+        } else {
+            updateProgram(newProgram);
+        }
+        
         setNewProgram({
-            monday: {
-                name: "",
-                description: ""
-            },
-            tuesday: {
-                name: "",
-                description: ""
-            },
-            wednesday: {
-                name: "",
-                description: ""
-            },
-            thursday: {
-                name: "",
-                description: ""
-            },
-            friday: {
-                name: "",
-                description: ""
-            },
-            saturday: {
-                name: "",
-                description: ""
-            },
-            sunday: {
-                name: "",
-                description: ""
-            },
+            user: "Bob",
+            programName: "",
+            mondayName: "",
+            mondayDescription: "",
+            tuesdayName: "",
+            tuesdayDescription: "",
+            wednesdayName: "",
+            wednesdayDescription: "",
+            thursdayName: "",
+            thursdayDescription: "",
+            fridayName: "",
+            fridayDescription: "",
+            saturdayName: "",
+            saturdayDescription: "",
+            sundayName: "",
+            sundayDescription: "",
             id: Math.floor(Math.random() * 10000) +1
         })
     }
@@ -80,16 +91,28 @@ const NewProgramForum = () => {
     return (
         <div className="formcontainer">
             <form onSubmit={onSubmit}>
-                <h2>Create Program</h2>
+                <h2>{current ? "Update Program" : "Create Program"}</h2>
+
+                <div className="labelinputcontainer">
+                <label htmlFor='programname'>Name of the program:</label>
+                <input 
+                    type='text'
+                    placeholder='Title of the program'
+                    name='programName'
+                    id='programname'
+                    value={programName}
+                    onChange={onChange}
+                    />
+                </div> 
                 
                 <div className="labelinputcontainer">
                 <label htmlFor='mondayname'>Monday workout name:</label>
                 <input 
                     type='text'
                     placeholder='Monday workout name'
-                    name='name'
+                    name='mondayName'
                     id='mondayname'
-                    value={monday.name}
+                    value={mondayName}
                     onChange={onChange}
                     />
                 </div> 
@@ -99,9 +122,9 @@ const NewProgramForum = () => {
                 <input 
                     type='text'
                     placeholder='Monday workout description'
-                    name='monday.description'
+                    name='mondayDescription'
                     id='mondaydescription'
-                    value={monday.description}
+                    value={mondayDescription}
                     onChange={onChange}
                     />
                 </div> 
@@ -111,9 +134,9 @@ const NewProgramForum = () => {
                 <input 
                     type='text'
                     placeholder='Tuesday workout name'
-                    name='tuesday.name'
+                    name='tuesdayName'
                     id='tuesdayname'
-                    value={tuesday.name}
+                    value={tuesdayName}
                     onChange={onChange}
                     />
                 </div> 
@@ -123,9 +146,9 @@ const NewProgramForum = () => {
                 <input 
                     type='text'
                     placeholder='Tuesday workout description'
-                    name='tuesday.description'
+                    name='tuesdayDescription'
                     id='tuesdaydescription'
-                    value={tuesday.description}
+                    value={tuesdayDescription}
                     onChange={onChange}
                     />
                 </div> 
@@ -135,9 +158,9 @@ const NewProgramForum = () => {
                 <input 
                     type='text'
                     placeholder='Wednesday workout name'
-                    name='wednesday.name'
+                    name='wednesdayName'
                     id='wednesdayname'
-                    value={wednesday.name}
+                    value={wednesdayName}
                     onChange={onChange}
                     />
                 </div> 
@@ -147,9 +170,9 @@ const NewProgramForum = () => {
                 <input 
                     type='text'
                     placeholder='Wednesday workout description'
-                    name='wednesday.description'
+                    name='wednesdayDescription'
                     id='wednesdaydescription'
-                    value={wednesday.description}
+                    value={wednesdayDescription}
                     onChange={onChange}
                     />
                 </div> 
@@ -159,9 +182,9 @@ const NewProgramForum = () => {
                 <input 
                     type='text'
                     placeholder='Thursday workout name'
-                    name='thursday.name'
+                    name='thursdayName'
                     id='thursdayname'
-                    value={thursday.name}
+                    value={thursdayName}
                     onChange={onChange}
                     />
                 </div> 
@@ -171,9 +194,9 @@ const NewProgramForum = () => {
                 <input 
                     type='text'
                     placeholder='Thursday workout description'
-                    name='thursday.description'
+                    name='thursdayDescription'
                     id='thursdaydescription'
-                    value={thursday.description}
+                    value={thursdayDescription}
                     onChange={onChange}
                     />
                 </div> 
@@ -183,9 +206,9 @@ const NewProgramForum = () => {
                 <input 
                     type='text'
                     placeholder='Friday workout name'
-                    name='friday.name'
+                    name='fridayName'
                     id='fridayname'
-                    value={friday.name}
+                    value={fridayName}
                     onChange={onChange}
                     />
                 </div> 
@@ -195,9 +218,9 @@ const NewProgramForum = () => {
                 <input 
                     type='text'
                     placeholder='Friday workout description'
-                    name='friday.description'
+                    name='fridayDescription'
                     id='fridaydescription'
-                    value={friday.description}
+                    value={fridayDescription}
                     onChange={onChange}
                     />
                 </div> 
@@ -207,9 +230,9 @@ const NewProgramForum = () => {
                 <input 
                     type='text'
                     placeholder='Saturday workout name'
-                    name='saturday.name'
+                    name='saturdayName'
                     id='saturdayname'
-                    value={saturday.name}
+                    value={saturdayName}
                     onChange={onChange}
                     />
                 </div> 
@@ -219,9 +242,9 @@ const NewProgramForum = () => {
                 <input 
                     type='text'
                     placeholder='Saturday workout description'
-                    name='saturday.description'
+                    name='saturdayDescription'
                     id='saturdaydescription'
-                    value={saturday.description}
+                    value={saturdayDescription}
                     onChange={onChange}
                     />
                 </div> 
@@ -231,9 +254,9 @@ const NewProgramForum = () => {
                 <input 
                     type='text'
                     placeholder='Sunday workout name'
-                    name='sunday.name'
+                    name='sundayName'
                     id='sundayname'
-                    value={sunday.name}
+                    value={sundayName}
                     onChange={onChange}
                     />
                 </div> 
@@ -243,13 +266,14 @@ const NewProgramForum = () => {
                 <input 
                     type='text'
                     placeholder='Sunday workout description'
-                    name='sunday.description'
+                    name='sundayDescription'
                     id='sundaydescription'
-                    value={sunday.description}
+                    value={sundayDescription}
                     onChange={onChange}
                     />
                 </div> 
-                <input type="submit" value="Add program" className="buttoncolour"/>
+                <input type="submit" value={current ? "Update Program" : "Create Program"} className="buttoncolour button"/>
+
             </form>
         </div>
     )
