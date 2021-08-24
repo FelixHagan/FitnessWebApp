@@ -17,6 +17,10 @@ const UserSchema = mongoose.Schema({
     fitnessLevel: {
         type: String,
         default: '1'
+    },
+    numOfWorkoutsCompleted: {
+        type: Number,
+        default: 0
     }, 
     date: {
         type: Date,

@@ -12,7 +12,7 @@ const Workout = require('../models/Workout');
 // @access  Private
 router.get('/', auth, async (req, res) => {
     try {
-        const workouts = await Workout.find({ fitnessLevel: req.body.fitnessLevel });
+        const workouts = await Workout.find(req.body);
         res.json(workouts);
     } catch (err){
         console.error(err.message);
@@ -24,14 +24,15 @@ router.get('/', auth, async (req, res) => {
 // @desc    add workout
 // @access  Private
 router.post('/', [ auth, [ check('name', 'Name is required').not().isEmpty(), 
-check('fitnessLevel', 'FitnessLevel is required').not().isEmpty(), 
-check('exercises').not().isEmpty()] ], async (req, res) => {
+check('fitnessLevel', 'FitnessLevel is required').not().isEmpty(),
+check('description', 'Description is required').not().isEmpty(),
+check('exercises', 'exercises required').isArray({ min: 1})] ], async (req, res) => {
     const errors = validationResult(req);
     if(!errors.isEmpty()){
         return res.status(400).json({ errors: errors.array() });
     }
 
-    const { name, fitnessLevel, exercises } = req.body;
+    const { name, fitnessLevel, exercises, description } = req.body;
 
     try {
         let workout = await Workout.findOne({ name: name });
@@ -43,7 +44,8 @@ check('exercises').not().isEmpty()] ], async (req, res) => {
         workout = new Workout({
             name,
             fitnessLevel,
-            exercises
+            exercises,
+            description
         });
 
         await workout.save();
@@ -58,12 +60,13 @@ check('exercises').not().isEmpty()] ], async (req, res) => {
 // @desc    Update workout
 // @access  Private
 router.put('/:id', auth, async (req, res) => {
-    const { name, fitnessLevel, exercises } = req.body;
+    const { name, fitnessLevel, exercises, description } = req.body;
 
     const workoutProperties = {};
     if (name) workoutProperties.name = name;
     if (fitnessLevel) workoutProperties.fitnessLevel = fitnessLevel;
     if (exercises) workoutProperties.exercises = exercises;
+    if (description) workoutProperties.description = description;
 
     try {
         let workout = await Workout.findById(req.params.id);

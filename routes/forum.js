@@ -22,18 +22,19 @@ router.get('/', auth, async (req, res) => {
 // @route   POST api/forum
 // @desc    add a message
 // @access  Private
-router.post('/', [ auth, [ check('message', 'Message is required').not().isEmpty()] ], async (req, res) => {
+router.post('/', [ auth, [ check('description', 'Topic is required').not().isEmpty()] ], async (req, res) => {
     const errors = validationResult(req);
     if(!errors.isEmpty()){
         return res.status(400).json({ errors: errors.array() });
     }
 
-    const { message } = req.body;
+    const { description, messages } = req.body;
 
     try {
         let newMessage = new Forum({
             user: req.user.id,
-            message
+            description,
+            messages: messages
         });
 
         const theMessage = await newMessage.save();
@@ -48,15 +49,16 @@ router.post('/', [ auth, [ check('message', 'Message is required').not().isEmpty
 // @desc    Update message
 // @access  Private
 router.put('/:id', auth, async (req, res) => {
-    const { message } = req.body;
+    const { description, messages } = req.body;
 
     const forumProperties = {};
-    if (message) forumProperties.message = message;
+    if (description) forumProperties.description = description;
+    if (messages) forumProperties.messages = messages;
 
     try {
         let forumMessage = await Forum.findById(req.params.id);
 
-        if (!forumMessage) return res.status(404).json({ msg: 'Forum message not found '});
+        if (!forumMessage) return res.status(404).json({ msg: 'Forum topic not found '});
 
         forumMessage = await Forum.findByIdAndUpdate(req.params.id, 
             { $set: forumProperties },

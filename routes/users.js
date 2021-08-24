@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const config = require('config');
 const { check, validationResult } = require('express-validator/check');
-
+const auth = require('../middleware/auth');
 
 const User = require('../models/User');
 
@@ -54,6 +54,32 @@ router.post('/', [check('name', 'Please add name').not().isEmpty(), check('email
         });
 
     } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server Error');
+    }
+});
+
+// @route   PUT api/users/:id
+// @desc    Update users workouts completed and fitness level
+// @access  Private
+router.put('/:id', auth, async (req, res) => {
+    const { fitnessLevel, numOfWorkoutsCompleted } = req.body;
+
+    const userProperties = {};
+    if (fitnessLevel) userProperties.fitnessLevel = fitnessLevel;
+    if (numOfWorkoutsCompleted) userProperties.numOfWorkoutsCompleted = numOfWorkoutsCompleted;
+
+    try {
+        let user = await User.findById(req.params.id);
+
+        if (!user) return res.status(404).json({ msg: 'User not found '});
+
+        user = await User.findByIdAndUpdate(req.params.id, 
+            { $set: userProperties },
+            { new: true });
+
+            res.json(user);
+    } catch (err){
         console.error(err.message);
         res.status(500).send('Server Error');
     }
