@@ -9,7 +9,7 @@ const { check, validationResult } = require('express-validator/check');
 // @access  Private
 router.get('/', auth, async (req, res) => {
     try {
-        const program = await Coach.find({ user: req.body.user });
+        const program = await Coach.find({ user: req.user.id });
         res.json(program);
     } catch (err) {
         console.error(err.message);
@@ -28,10 +28,11 @@ router.post('/', [ auth, [check('programName', 'Name for the program is required
 
     const { mondayName, mondayDescription, tuesdayName, tuesdayDescription, wednesdayName, wednesdayDescription,
         thursdayName, thursdayDescription, fridayName, fridayDescription, saturdayName, saturdayDescription, 
-        sundayName, sundayDescription, programName} = req.body;
+        sundayName, sundayDescription, programName, user} = req.body;
     
     try {
         let program = new Coach({
+            user,
             programName,
             mondayName,
             mondayDescription,

@@ -1,18 +1,20 @@
 import React, { useContext, useState } from 'react';
 import ForumContext from '../../context/forum/forumContext';
+import AuthContext from '../../context/auth/authContext';
 
 const TopicForum = () => {
     const forumContext = useContext(ForumContext);
+    const authContext = useContext(AuthContext);
+
+    const { user } = authContext;
 
     const [newTopic, setNewTopic] = useState({
-        id: Math.floor(Math.random() * 10000) +1,
-        user: "",
+        user: user.name,
         description: "",
-        date: new Date(),
         messages: []
     })
 
-    const { user, description } = newTopic;
+    const { description } = newTopic;
 
     const onChange = e => setNewTopic({ ...newTopic, [e.target.name]: e.target.value });
 
@@ -20,10 +22,8 @@ const TopicForum = () => {
         e.preventDefault();
         forumContext.addTopic(newTopic);
         setNewTopic({
-            user: "",
+            user: user.name,
             description: "",
-            date: new Date(),
-            id: Math.floor(Math.random() * 10000) +1,
             messages: []
         })
     }
@@ -32,18 +32,6 @@ const TopicForum = () => {
         <div className="formcontainer">
         <form onSubmit={onSubmit}>
             <h2>Add A New Topic</h2>
-            
-            <div className="labelinputcontainer">
-            <label htmlFor='user'>User:</label>
-            <input 
-                type='text'
-                placeholder='User'
-                name='user'
-                id='user'
-                value={user}
-                onChange={onChange}
-                />
-            </div>
     
             <div className="labelinputcontainer">
                 <label htmlFor='description'>Topic:</label>
@@ -56,11 +44,7 @@ const TopicForum = () => {
                 onChange={onChange}
                 />
             </div>
-            <input 
-            type='hidden'
-            name='date'
-            value={new Date()}
-            />
+            
             <input type="submit" value="Add New Topic" className="buttoncolour"/>
         </form>
         </div>

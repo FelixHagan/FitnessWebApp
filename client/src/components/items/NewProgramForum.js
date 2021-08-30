@@ -1,18 +1,20 @@
 import React, { useState, useContext, useEffect } from 'react';
 import CreateProgramContext from '../../context/createProgram/createProgramContext';
-
+import AuthContext from '../../context/auth/authContext';
 
 const NewProgramForum = () => {
     const createProgramContext = useContext(CreateProgramContext);
+    const authContext = useContext(AuthContext);
 
     const { addNewProgram, current, clearCurrent, updateProgram } = createProgramContext;
+    const { user } = authContext;
 
     useEffect(() => {
         if (current !== null) {
             setNewProgram(current);
         } else {
             setNewProgram({
-                user: "Bob",
+                user: user._id,
                 programName: "",
                 mondayName: "",
                 mondayDescription: "",
@@ -27,14 +29,13 @@ const NewProgramForum = () => {
                 saturdayName: "",
                 saturdayDescription: "",
                 sundayName: "",
-                sundayDescription: "",
-                id: Math.floor(Math.random() * 10000) +1
+                sundayDescription: ""
             })
         }
     }, [createProgramContext, current])
 
     const [newProgram, setNewProgram] = useState({
-        user: "Bob",
+        user: user.id,
         programName: "",
             mondayName: "",
             mondayDescription: "",
@@ -49,8 +50,7 @@ const NewProgramForum = () => {
             saturdayName: "",
             saturdayDescription: "",
             sundayName: "",
-            sundayDescription: "",
-            id: Math.floor(Math.random() * 10000) +1
+            sundayDescription: ""
     })
 
     const { mondayName, mondayDescription, tuesdayName, tuesdayDescription, wednesdayName, wednesdayDescription,
@@ -68,7 +68,7 @@ const NewProgramForum = () => {
         }
         
         setNewProgram({
-            user: "Bob",
+            user: user._id,
             programName: "",
             mondayName: "",
             mondayDescription: "",
@@ -83,8 +83,7 @@ const NewProgramForum = () => {
             saturdayName: "",
             saturdayDescription: "",
             sundayName: "",
-            sundayDescription: "",
-            id: Math.floor(Math.random() * 10000) +1
+            sundayDescription: ""
         })
     }
 

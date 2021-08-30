@@ -1,18 +1,19 @@
 import React, { useState, useContext } from 'react';
 import ForumContext from '../../context/forum/forumContext';
-
+import AuthContext from '../../context/auth/authContext';
 
 const FormItem = ({ addAMessage }) => {
     const formContext = useContext(ForumContext);
+    const authContext = useContext(AuthContext);
+
+    const { user } = authContext;
 
     const [newMessage, setNewMessage] = useState({
-        user: "",
-        message: "",
-        date: new Date,
-        id: Math.floor(Math.random() * 10000) +1
+        user: user.name,
+        message: ""
     })
 
-    const { user, message, date } = newMessage;
+    const { message } = newMessage;
 
     const onChange = e => setNewMessage({ ...newMessage, [e.target.name]: e.target.value });
 
@@ -20,10 +21,8 @@ const FormItem = ({ addAMessage }) => {
         e.preventDefault();
         addAMessage(newMessage);
         setNewMessage({
-            user: "",
-            message: "",
-            date: new Date(),
-            id: Math.floor(Math.random() * 10000) +1
+            user: user.name,
+            message: ""
         })
     }
 
@@ -31,18 +30,6 @@ const FormItem = ({ addAMessage }) => {
         <div className="formcontainer">
         <form onSubmit={onSubmit}>
             <h2>Add Message</h2>
-            
-            <div className="labelinputcontainer">
-            <label htmlFor='user'>User:</label>
-            <input 
-                type='text'
-                placeholder='User'
-                name='user'
-                id='user'
-                value={user}
-                onChange={onChange}
-                />
-            </div>
     
             <div className="labelinputcontainer">
                 <label htmlFor='message'>Message:</label>

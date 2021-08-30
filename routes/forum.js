@@ -28,11 +28,11 @@ router.post('/', [ auth, [ check('description', 'Topic is required').not().isEmp
         return res.status(400).json({ errors: errors.array() });
     }
 
-    const { description, messages } = req.body;
+    const { description, messages, user } = req.body;
 
     try {
         let newMessage = new Forum({
-            user: req.user.id,
+            user: user,
             description,
             messages: messages
         });

@@ -8,7 +8,7 @@ import TopicItem from '../items/TopicItem';
 const Messages = ({ individualTopic }) => {
     const forumContext = useContext(ForumContext);
 
-    const { id, user, description, date, messages  } = individualTopic;
+    const { _id, user, description, date, messages  } = individualTopic;
 
     const [showAddMessageForm, setShowAddMessageForm] = useState(false);
 
@@ -17,7 +17,7 @@ const Messages = ({ individualTopic }) => {
     }
     
     const [updateTopic, setUpdateTopic] = useState({
-        id: id,
+        id: _id,
         user: user,
         description: description,
         date: date,
@@ -26,8 +26,8 @@ const Messages = ({ individualTopic }) => {
 
     useEffect(() => {
         forumContext.addMessage(updateTopic);
-        
     }, [updateTopic])
+
 
     const addAMessage = (newMessage) => {
         setUpdateTopic({ ...updateTopic, messages: [...messages, newMessage]});
@@ -40,7 +40,7 @@ const Messages = ({ individualTopic }) => {
             <p>Topic</p>
         </div>
         <div>
-            <TopicItem key= {individualTopic.id} individualTopic={individualTopic}/>
+            <TopicItem individualTopic={individualTopic}/>
         </div>
         
         {messages.length > 0 && <div className="forumdivider">
@@ -49,8 +49,8 @@ const Messages = ({ individualTopic }) => {
         
         
         <div>
-            {messages.map((individualMessage, index) => (
-                <MessageItem key={individualMessage.id} individualMessage={individualMessage}/>
+            {messages.length > 0 && messages.map((individualMessage) => (
+                <MessageItem key={individualMessage._id} individualMessage={individualMessage}/>
             ))}
 
             {showAddMessageForm && <div className="workoutscontainer">

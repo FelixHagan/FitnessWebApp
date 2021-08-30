@@ -1,11 +1,19 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import ForumContext from '../../context/forum/forumContext';
+import AuthContext from '../../context/auth/authContext';
 
 import Messages from './Messages';
 import TopicForum from '../items/TopicForum';
 
 const Forum = () => {
     const forumContext = useContext(ForumContext);
+    const authContext = useContext(AuthContext);
+
+    useEffect(() => {
+        authContext.loadUser();
+        forumContext.getMessages();
+        // eslint-disable-next-line
+    }, []);
 
     const { topics } = forumContext;
 
@@ -19,9 +27,10 @@ const Forum = () => {
         <>
 
         <div className="outermessagecontainer">
-            {topics.map((individualTopic, index) => (
+            {topics.map((individualTopic) => (
                 <>
-                    <Messages key={individualTopic.id} individualTopic={individualTopic}/>
+                    <Messages key={individualTopic._id} individualTopic={individualTopic}/>
+                    
                 </>
             ))}
 

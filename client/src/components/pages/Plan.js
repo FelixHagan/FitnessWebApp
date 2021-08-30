@@ -1,10 +1,17 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import WeekPlan from '../items/WeekPlan';
+import AuthContext from '../../context/auth/authContext';
 
 const Plan = () => {
     const location = useLocation();
     const { individualProgram } = location.state;
+    const authContext = useContext(AuthContext);
+
+    useEffect(() => {
+        authContext.loadUser();
+        // eslint-disable-next-line
+    }, []);
 
     const { weeks } = individualProgram;
 

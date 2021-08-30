@@ -1,10 +1,17 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import pressUpImage from '../../images/pressupimage.jpg';
 import abexercise from '../../images/abexercise.jpeg';
 import runningimage from '../../images/runningimage.jpeg';
 import parkexercising from '../../images/parkexercising.jpeg';
+import AuthContext from '../../context/auth/authContext';
 
 const Home = () => {
+    const authContext = useContext(AuthContext);
+
+    useEffect(() => {
+        authContext.loadUser();
+        // eslint-disable-next-line
+    }, []);
 
     return (
         <div className="homesectioncontainer">

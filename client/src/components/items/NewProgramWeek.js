@@ -9,7 +9,7 @@ const NewProgramWeek = ({ newProgram }) => {
 
     const { programName, mondayName, mondayDescription, tuesdayName, tuesdayDescription, wednesdayName, wednesdayDescription,
         thursdayName, thursdayDescription, fridayName, fridayDescription, saturdayName, saturdayDescription, 
-        sundayName, sundayDescription, id } = newProgram;
+        sundayName, sundayDescription, _id } = newProgram;
 
     const [showForm, setShowForm] = useState(false);
 
@@ -23,7 +23,7 @@ const NewProgramWeek = ({ newProgram }) => {
     }
 
     const handleDelete = () => {
-        deleteProgram(id);
+        deleteProgram(_id);
         clearCurrent();
     }
 

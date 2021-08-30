@@ -2,8 +2,8 @@ const mongoose = require('mongoose');
 
 const ForumSchema = mongoose.Schema({
     user: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'users'
+        type: String,
+        required: true
     },
     description: {
         type: String,
@@ -16,8 +16,8 @@ const ForumSchema = mongoose.Schema({
     messages: [
         {
             user: {
-                type: mongoose.Schema.Types.ObjectId,
-                ref: 'users'
+                type: String,
+                required: true
             },
             message: {
                 type: String,

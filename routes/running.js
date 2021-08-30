@@ -12,7 +12,7 @@ const Running = require('../models/Running');
 // @access  Private
 router.get('/', auth, async (req, res) => {
     try {
-        const running = await Running.find({ name: req.body.name });
+        const running = await Running.find(req.body);
         res.json(running);
     } catch (err) {
         console.error(err.message);

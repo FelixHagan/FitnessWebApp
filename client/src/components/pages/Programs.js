@@ -1,6 +1,7 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import ProgramContext from '../../context/program/programContext';
 import CreateProgramContext from '../../context/createProgram/createProgramContext';
+import AuthContext from '../../context/auth/authContext';
 import ProgramItem from '../items/ProgramItem';
 import NewprogramForum from '../items/NewProgramForum';
 import { Link } from 'react-router-dom';
@@ -8,10 +9,19 @@ import { Link } from 'react-router-dom';
 const Programs = () => {
     const programContext = useContext(ProgramContext);
     const createProgramContext = useContext(CreateProgramContext);
+    const authContext = useContext(AuthContext);
+
+    const { programs, getRunning } = programContext;
+
+    useEffect(() => {
+        authContext.loadUser();
+        getRunning();
+        // eslint-disable-next-line
+    }, []);
 
     const { newPrograms } = createProgramContext;
 
-    const { programs } = programContext;
+    
 
     const [viewForm, setViewForm] = useState(false);
 
@@ -23,8 +33,9 @@ const Programs = () => {
 
     return (
         <div className="">
+            
             {programs.map(individualProgram => (
-                <ProgramItem key={individualProgram.id} individualProgram={individualProgram}/>
+                <ProgramItem key={individualProgram._id} individualProgram={individualProgram}/>
             ))}
             
             <div className="programsbox">

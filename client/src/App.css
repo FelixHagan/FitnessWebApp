@@ -468,6 +468,22 @@ styling for the messages in the form
     border-width: 1px;
 }
 
+/*
+alert styling
+*/
+.alertcontainer {
+    width: 100%;
+}
+
+.alertbox {
+    width: 90%;
+    margin: 1em auto;
+    padding: 1em;
+    background-color: red;
+    color: white;
+    text-align: center;
+}
+
 @media(max-width: 680px){
     /*
     .navbar {

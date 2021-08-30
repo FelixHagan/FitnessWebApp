@@ -1,12 +1,19 @@
 import React, { useContext, useState, useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import WorkoutContext from '../../context/workout/workoutContext';
+import AuthContext from '../../context/auth/authContext';
 import { Link } from 'react-router-dom';
 import YoutubeItem from './YoutubeItem';
 
 const TimerItem = () => {
     const location = useLocation();
     const { workout } = location.state;
+    const authContext = useContext(AuthContext);
+
+    useEffect(() => {
+        authContext.loadUser();
+        // eslint-disable-next-line
+    }, []);
 
     // const { id, name, fitnessLevel, description, startWorkout, 
     // currentExerciseOn, exercises } = workout;
