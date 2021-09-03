@@ -1,7 +1,9 @@
 import {
     GET_WORKOUTS,
     CLEAR_WORKOUTS,
-    WORKOUTS_ERROR
+    WORKOUTS_ERROR,
+    FILTER_WORKOUTS,
+    CLEAR_FILTER
 } from '../types';
 
 export default (state, action) => {
@@ -21,7 +23,21 @@ export default (state, action) => {
             return {
                 ...state,
                 workouts: [],
-                error: null
+                error: null,
+                filtered: null
+            }
+        case FILTER_WORKOUTS: 
+            return {
+                ...state,
+                filtered: state.workouts.filter((workout) => {
+                    const regex = new RegExp(`${action.payload}`, 'gi');
+                    return workout.fitnessLevel.match(regex);
+                })
+            }
+        case CLEAR_FILTER:
+            return {
+                ...state,
+                filtered: null
             }
         default: 
             return state;

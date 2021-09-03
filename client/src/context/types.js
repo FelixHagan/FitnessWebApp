@@ -1,6 +1,8 @@
 export const GET_WORKOUTS = 'GET_WORKOUTS';
 export const CLEAR_WORKOUTS = 'CLEAR_WORKOUTS';
 export const WORKOUTS_ERROR = 'WORKOUTS_ERROR';
+export const FILTER_WORKOUTS = 'FILTER_WORKOUTS';
+export const CLEAR_FILTER = 'CLEAR_FILTER';
 export const GET_RUNNING = 'GET_RUNNING';
 export const RUNNING_ERROR = 'GET_RUNNING';
 export const GET_PROGRAM = 'GET_PROGRAM';

@@ -49,14 +49,14 @@ const Navbar = ({ title }) => {
     }
 
     const loginRegister = (
-        <>
-        <li>
+        <div>
+        <div className="reglog">
             <Link to='/register' onClick={navClick}>Register</Link>
-        </li>
-        <li>
+        </div>
+        <div className="reglog">
             <Link to='/login' onClick={navClick}>Login</Link>
-        </li>
-        </>
+        </div>
+        </div>
     )
 
     return (
@@ -66,6 +66,14 @@ const Navbar = ({ title }) => {
                     <h2>
                         {title}
                     </h2>
+                    
+                        
+                        {!isAuthenticated ? loginRegister : <div>
+                            <a onClick={logoutUser}>Logout</a>
+                        </div>}
+                    
+                
+                    
                     
                     <p onClick={handleClick} className="burgermenu">burger menu</p>
                 </div>
@@ -87,9 +95,7 @@ const Navbar = ({ title }) => {
                         <li>
                             <Link to='/forum' onClick={navClick}>Forum</Link>
                         </li>
-                        {!isAuthenticated ? loginRegister : <li>
-                            <a onClick={logoutUser}>Logout</a>
-                        </li>}
+                        
                     </ul>
                 </div>
                 
