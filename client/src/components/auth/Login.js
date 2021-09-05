@@ -7,28 +7,33 @@ const Login = (props) => {
     const alertContext = useContext(AlertContext);
 
     const { setAlert } = alertContext;
-    const { login, error, clearErrors, isAuthenticated } = authContext;
+    const { login, error, clearErrors, isAuthenticated, user } = authContext;
 
     useEffect(() => {
-        if (isAuthenticated) {
-            props.history.push('/');
-        }
+        if (isAuthenticated && user !== null) {
+            if (user.userType === "1"){
+                props.history.push('/');
+            } else if (user.userType === "2") {
+                props.history.push('/adminUser');
+            }
+            
+        } 
 
         if(error === 'Invalid Credentials') {
             setAlert(error);
             clearErrors();
         }
         // eslint-disable-next-line
-    }, [error, isAuthenticated, props.history]);
+    }, [error, isAuthenticated, props.history, user]);
 
-    const [user, setUser] = useState({
+    const [theUser, setTheUser] = useState({
         email: "",
         password: ""
     })
 
-    const { email, password } = user;
+    const { email, password } = theUser;
 
-    const onChange = e => setUser({ ...user, [e.target.name]: e.target.value });
+    const onChange = e => setTheUser({ ...theUser, [e.target.name]: e.target.value });
 
     const onSubmit = e => {
         e.preventDefault();

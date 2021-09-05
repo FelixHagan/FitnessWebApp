@@ -17,7 +17,7 @@ router.post('/', [check('name', 'Please add name').not().isEmpty(), check('email
         return res.status(400).json({ errors: errors.array() });
     }
 
-    const { name, email, password, fitnessLevel } = req.body;
+    const { name, email, password, fitnessLevel, userType } = req.body;
 
     try {
         let user = await User.findOne({ email: email });
@@ -31,7 +31,8 @@ router.post('/', [check('name', 'Please add name').not().isEmpty(), check('email
             name,
             email,
             password,
-            fitnessLevel
+            fitnessLevel,
+            userType
         });
 
         const salt = await bcrypt.genSalt(10);
@@ -79,6 +80,38 @@ router.put('/:id', auth, async (req, res) => {
             { new: true });
 
             res.json(user);
+    } catch (err){
+        console.error(err.message);
+        res.status(500).send('Server Error');
+    }
+});
+
+// @route   GET api/users
+// @desc    Get all users
+// @access  Private
+router.get('/', auth, async (req, res) => {
+    try {
+        
+        const users = await User.find(req.body).select('-password');
+        res.json(users);
+    } catch (err){
+        console.error(err.message);
+        res.status(500).send('Server Error');
+    }
+});
+
+// @route   DELETE api/users/:id
+// @desc    delete user
+// @access  Private
+router.delete('/:id', auth, async (req, res) => {
+    try {
+        let user = await User.findById(req.params.id);
+
+        if (!user) return res.status(404).json({ msg: 'User not found '});
+
+        await User.findByIdAndRemove(req.params.id);
+
+        res.json({ msg: 'User removed' });
     } catch (err){
         console.error(err.message);
         res.status(500).send('Server Error');

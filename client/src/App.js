@@ -14,11 +14,13 @@ import Register from './components/auth/Register';
 import Login from './components/auth/Login';
 import PrivateRoute from './components/routing/PrivateRoute';
 import WorkoutState from './context/workout/WorkoutState';
+import AdminUser from './components/admin/AdminUser';
 import ForumState from './context/forum/ForumState';
 import ProgramState from './context/program/ProgramState';
 import CreateProgramState from './context/createProgram/CreateProgramState';
 import AuthState from './context/auth/AuthState';
 import AlertState from './context/alert/AlertState';
+import AdminState from './context/admin/AdminState';
 import setAuthToken from './utils/setAuthToken';
 
 
@@ -36,7 +38,9 @@ const App = () => {
     <ForumState>
     <ProgramState>
     <CreateProgramState>
+    <AdminState >
       <AlertState>
+       
       <Router>
       <Fragment>
         <Navbar />
@@ -50,6 +54,7 @@ const App = () => {
             <PrivateRoute exact path='/timer' component={TimerItem} />
             <PrivateRoute exact path='/plan' component={Plan} />
             <PrivateRoute exact path='/newProgram' component={NewProgram} />
+            <PrivateRoute exact path='/adminUser' component={AdminUser} />
             <Route exact path='/register' component={Register} />
             <Route exact path='/login' component={Login} />
           </Switch>
@@ -59,7 +64,9 @@ const App = () => {
         </div>
       </Fragment>
       </Router>
+      
       </AlertState>
+      </AdminState>
       </CreateProgramState>
       </ProgramState>
       </ForumState>

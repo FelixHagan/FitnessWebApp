@@ -1,15 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-const MessageItem = ({ individualMessage }) => {
-    const { user, date, message } = individualMessage;
+const MessageItem = ({ individualMessage, reportTheMessage }) => {
+    const { user, date, message, _id, flag } = individualMessage;
 
-    const [reportMessage, setReportMessage] = useState(false);
+    const [reportMessage, setReportMessage] = useState(flag);
+
+    const [updatedMessage, setUpdatedMessage] = useState({
+        _id: _id,
+        user: user,
+        date: date,
+        message: message,
+        flag: flag
+    })
 
     let year = date.split("T");
 
+    useEffect(() => {
+        reportTheMessage(updatedMessage)
+    }, [updatedMessage])
+
     const handleClick = () => {
+        setUpdatedMessage({
+            ...updatedMessage,
+            flag: !reportMessage
+        });
         setReportMessage(!reportMessage);
+
     }
 
     return (
@@ -21,7 +38,7 @@ const MessageItem = ({ individualMessage }) => {
             <div className="messagebody">
                 <p>{message}</p>
                 <p style={{color: "red"}} onClick={handleClick}>
-                    {reportMessage ? "Message Reported" : "Report Message"}
+                    {updatedMessage.flag ? "Message Reported" : "Report Message"}
                 </p>
             </div>
         </div>

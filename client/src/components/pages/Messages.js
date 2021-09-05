@@ -28,10 +28,14 @@ const Messages = ({ individualTopic }) => {
         forumContext.addMessage(updateTopic);
     }, [updateTopic])
 
-
     const addAMessage = (newMessage) => {
         setUpdateTopic({ ...updateTopic, messages: [...messages, newMessage]});
         
+    }
+
+    const reportTheMessage = (updatedMessage) => {
+        setUpdateTopic({ ...updateTopic, messages: messages.map(message => message._id === updatedMessage._id ?
+             updatedMessage : message)})
     }
 
     return (
@@ -50,7 +54,7 @@ const Messages = ({ individualTopic }) => {
         
         <div>
             {messages.length > 0 && messages.map((individualMessage) => (
-                <MessageItem key={individualMessage._id} individualMessage={individualMessage}/>
+                <MessageItem key={individualMessage._id} individualMessage={individualMessage} reportTheMessage={reportTheMessage}/>
             ))}
 
             {showAddMessageForm && <div className="workoutscontainer">
