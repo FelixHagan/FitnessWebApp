@@ -6,7 +6,9 @@ import {
     CLEAR_WORKOUTS,
     WORKOUTS_ERROR,
     FILTER_WORKOUTS,
-    CLEAR_FILTER
+    CLEAR_FILTER,
+    FIND_SPECIFIC,
+    CLEAR_SPECIFIC
 } from '../types';
 import axios from 'axios';
 
@@ -15,7 +17,8 @@ const WorkoutState = props => {
         workouts: [],
         loading: true,
         error: null,
-        filtered: null
+        filtered: null,
+        specificWorkout: null
     }
 
     const [state, dispatch] = useReducer(workoutReducer, initialState);
@@ -54,6 +57,16 @@ const WorkoutState = props => {
         dispatch({ type: CLEAR_FILTER });
     }
 
+    // Find specific workout 
+    const findSpecific = (name) => {
+        dispatch({ type: FIND_SPECIFIC, payload: name});
+    }
+
+    // Clear Specific
+    const clearSpecific = () => {
+        dispatch({ type: CLEAR_SPECIFIC });
+    }
+
     return (
         <WorkoutContext.Provider
         value={{
@@ -61,10 +74,13 @@ const WorkoutState = props => {
             loading: state.loading,
             error: state.error,
             filtered: state.filtered,
+            specificWorkout: state.specificWorkout,
             getWorkouts,
             clearWorkouts,
             filterWorkouts,
-            clearFilter
+            clearFilter,
+            findSpecific,
+            clearSpecific
         }}>
             {props.children}
         </WorkoutContext.Provider>

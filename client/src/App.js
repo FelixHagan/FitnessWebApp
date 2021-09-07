@@ -9,6 +9,7 @@ import Programs from './components/pages/Programs';
 import Forum from './components/pages/Forum';
 import TimerItem from './components/items/TimerItem'
 import Plan from './components/pages/Plan';
+import HiitPlan from './components/pages/HiitPlan';
 import NewProgram from './components/pages/NewProgram';
 import MessageCoach from './components/pages/MessageCoach';
 import Register from './components/auth/Register';
@@ -57,6 +58,7 @@ const App = () => {
             <PrivateRoute exact path='/forum' component={Forum} />
             <PrivateRoute exact path='/timer' component={TimerItem} />
             <PrivateRoute exact path='/plan' component={Plan} />
+            <PrivateRoute exact path='/hiitPlan' component={HiitPlan} />
             <PrivateRoute exact path='/newProgram' component={NewProgram} />
             <PrivateRoute exact path='/adminUser' component={AdminUser} />
             <PrivateRoute exact path='/messageCoach' component={MessageCoach} />

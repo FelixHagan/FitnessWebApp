@@ -36,4 +36,6 @@ export const GET_MESSAGE = 'GET_MESSAGE';
 export const MESSAGE_ERROR = 'MESSAGE_ERROR';
 export const CLEAR_MESSAGES = 'CLEAR_MESSAGES';
 export const ADD_COACHMESSAGE = 'ADD_COACHMESSAGE';
-export const ADD_REPLY = "ADD_REPLY";
+export const ADD_REPLY = 'ADD_REPLY';
+export const FIND_SPECIFIC = 'FIND_SPECIFIC';
+export const CLEAR_SPECIFIC = 'CLEAR_SPECIFIC';

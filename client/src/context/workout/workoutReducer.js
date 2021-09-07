@@ -3,7 +3,9 @@ import {
     CLEAR_WORKOUTS,
     WORKOUTS_ERROR,
     FILTER_WORKOUTS,
-    CLEAR_FILTER
+    CLEAR_FILTER,
+    FIND_SPECIFIC,
+    CLEAR_SPECIFIC
 } from '../types';
 
 export default (state, action) => {
@@ -24,7 +26,8 @@ export default (state, action) => {
                 ...state,
                 workouts: [],
                 error: null,
-                filtered: null
+                filtered: null,
+                specificWorkout: null
             }
         case FILTER_WORKOUTS: 
             return {
@@ -34,10 +37,23 @@ export default (state, action) => {
                     return workout.fitnessLevel.match(regex);
                 })
             }
+        case FIND_SPECIFIC:
+            return {
+                ...state,
+                specificWorkout: state.workouts.filter((workout) => {
+                    const regex = new RegExp(`${action.payload}`, 'gi');
+                    return workout.name.match(regex);
+                })
+            }
         case CLEAR_FILTER:
             return {
                 ...state,
                 filtered: null
+            }
+        case CLEAR_SPECIFIC:
+            return {
+                ...state,
+                specificWorkout: null
             }
         default: 
             return state;
