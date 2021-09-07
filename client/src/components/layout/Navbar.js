@@ -5,12 +5,16 @@ import AuthContext from '../../context/auth/authContext';
 import WorkoutContext from '../../context/workout/workoutContext';
 import CreateProgramContext from '../../context/createProgram/createProgramContext'; 
 import ForumContext from '../../context/forum/forumContext';
+import AdminContext from '../../context/admin/adminContext';
+import MessageCoachContext from '../../context/messageCoach/messageCoachContext'
 
 const Navbar = ({ title }) => {
     const authContext = useContext(AuthContext);
     const workoutContext = useContext(WorkoutContext);
     const createProgramContext = useContext(CreateProgramContext);
     const forumContext = useContext(ForumContext);
+    const adminContext = useContext(AdminContext);
+    const messageCoachContext = useContext(MessageCoachContext);
 
     const [displayMobile, setDisplayMoblie] = useState(true);
 
@@ -18,6 +22,8 @@ const Navbar = ({ title }) => {
     const { clearWorkouts } = workoutContext;
     const { clearPrograms } = createProgramContext;
     const { clearForum } = forumContext;
+    const { clearUsers } = adminContext;
+    const { clearMessages } = messageCoachContext;
 
     const handleClick = () => {
         setDisplayMoblie(!displayMobile);
@@ -46,6 +52,8 @@ const Navbar = ({ title }) => {
         clearWorkouts();
         clearPrograms();
         clearForum();
+        clearUsers();
+        clearMessages();
     }
 
     const loginRegister = (
@@ -82,6 +90,7 @@ const Navbar = ({ title }) => {
             </div>
             <div id="mobileview" className="navbar">
                 <div className="outercontainer">
+                    
                     <ul>
                         <li>
                             <Link to='/' onClick={navClick}>Home</Link>
@@ -94,6 +103,9 @@ const Navbar = ({ title }) => {
                         </li>
                         <li>
                             <Link to='/forum' onClick={navClick}>Forum</Link>
+                        </li>
+                        <li>
+                            <Link to='/messageCoach' onClick={navClick}>Message Coach</Link>
                         </li>
                         
                     </ul>

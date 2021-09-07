@@ -512,6 +512,62 @@ alert styling
     text-align: center;
 }
 
+/*
+message the coach styling
+*/
+.messagecoachcontainer {
+    width: 95%;
+    margin: 0 auto;
+}
+
+.messagecoach {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    margin: 0 auto;
+    align-items: center;
+}
+
+.replycoach {
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    margin: 0 auto;
+    align-items: center;
+}
+
+.innermessage {
+    box-shadow: 0.1em 0.1em 0.5em black;
+    margin: 0.5em;
+    border: 1px solid rgb(143, 142, 142);
+    border-radius: 0.5em;
+    background-color: rgb(133, 202, 241);
+    color: black;
+    padding: 0.5em;
+    flex-basis: 70%;
+}
+
+.innerreply {
+    box-shadow: 0.1em 0.1em 0.5em black;
+    margin: 0.5em;
+    border: 1px solid rgb(143, 142, 142);
+    border-radius: 0.5em;
+    background-color: rgb(207, 201, 201);
+    color: black;
+    padding: 0.5em;
+    flex-basis: 70%;
+}
+
+.messagecoachcontainer .workoutbutton {
+    margin-left: 0.5em;
+    margin-top: 1em;
+}
+
+.alignleft {
+    text-align: left;
+}
+
+
 @media(max-width: 680px){
     /*
     .navbar {

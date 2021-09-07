@@ -9,7 +9,7 @@ connectDB();
 // init Middleware
 app.use(express.json({ extended: false }));
 
-app.get('/', (req, res) => res.json({ msg: 'Welcome to the ContactKeeper API...'}));
+app.get('/', (req, res) => res.json({ msg: 'Welcome to the FitnessApp API...'}));
 
 // Define Routes
 app.use('/api/users', require('./routes/users'));
@@ -18,6 +18,8 @@ app.use('/api/running', require('./routes/running'));
 app.use('/api/workouts', require('./routes/workouts'));
 app.use('/api/coach', require('./routes/coach'));
 app.use('/api/forum', require('./routes/forum'));
+app.use('/api/messageCoach', require('./routes/messageCoach'));
+app.use('/api/adminCoach', require('./routes/adminCoach'));
 
 const PORT = process.env.PORT || 5000;
 

@@ -15,6 +15,8 @@ const Login = (props) => {
                 props.history.push('/');
             } else if (user.userType === "2") {
                 props.history.push('/adminUser');
+            } else if (user.userType === "3") {
+                props.history.push('/adminCoach');
             }
             
         } 

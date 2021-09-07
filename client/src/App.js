@@ -10,17 +10,20 @@ import Forum from './components/pages/Forum';
 import TimerItem from './components/items/TimerItem'
 import Plan from './components/pages/Plan';
 import NewProgram from './components/pages/NewProgram';
+import MessageCoach from './components/pages/MessageCoach';
 import Register from './components/auth/Register';
 import Login from './components/auth/Login';
 import PrivateRoute from './components/routing/PrivateRoute';
 import WorkoutState from './context/workout/WorkoutState';
 import AdminUser from './components/admin/AdminUser';
+import AdminCoach from './components/admin/AdminCoach';
 import ForumState from './context/forum/ForumState';
 import ProgramState from './context/program/ProgramState';
 import CreateProgramState from './context/createProgram/CreateProgramState';
 import AuthState from './context/auth/AuthState';
 import AlertState from './context/alert/AlertState';
 import AdminState from './context/admin/AdminState';
+import MessageCoachState from './context/messageCoach/MessageCoachState';
 import setAuthToken from './utils/setAuthToken';
 
 
@@ -30,7 +33,7 @@ if (localStorage.token) {
 
 const App = () => {
   
-
+  
 
   return (
     <AuthState>
@@ -39,6 +42,7 @@ const App = () => {
     <ProgramState>
     <CreateProgramState>
     <AdminState >
+    <MessageCoachState>
       <AlertState>
        
       <Router>
@@ -55,6 +59,8 @@ const App = () => {
             <PrivateRoute exact path='/plan' component={Plan} />
             <PrivateRoute exact path='/newProgram' component={NewProgram} />
             <PrivateRoute exact path='/adminUser' component={AdminUser} />
+            <PrivateRoute exact path='/messageCoach' component={MessageCoach} />
+            <PrivateRoute exact path='/adminCoach' component={AdminCoach} />
             <Route exact path='/register' component={Register} />
             <Route exact path='/login' component={Login} />
           </Switch>
@@ -66,6 +72,7 @@ const App = () => {
       </Router>
       
       </AlertState>
+      </MessageCoachState>
       </AdminState>
       </CreateProgramState>
       </ProgramState>
