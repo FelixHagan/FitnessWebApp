@@ -39,3 +39,5 @@ export const ADD_COACHMESSAGE = 'ADD_COACHMESSAGE';
 export const ADD_REPLY = 'ADD_REPLY';
 export const FIND_SPECIFIC = 'FIND_SPECIFIC';
 export const CLEAR_SPECIFIC = 'CLEAR_SPECIFIC';
+export const UPDATE_USER = 'UPDATE_USER';
+export const UPDATE_ERROR = 'UPDATE_ERROR';

@@ -64,11 +64,11 @@ router.post('/', [check('name', 'Please add name').not().isEmpty(), check('email
 // @desc    Update users workouts completed and fitness level
 // @access  Private
 router.put('/:id', auth, async (req, res) => {
-    const { fitnessLevel, numOfWorkoutsCompleted } = req.body;
+    const { fitnessLevel, workoutsCompleted } = req.body;
 
     const userProperties = {};
     if (fitnessLevel) userProperties.fitnessLevel = fitnessLevel;
-    if (numOfWorkoutsCompleted) userProperties.numOfWorkoutsCompleted = numOfWorkoutsCompleted;
+    if (workoutsCompleted) userProperties.workoutsCompleted = workoutsCompleted;
 
     try {
         let user = await User.findById(req.params.id);

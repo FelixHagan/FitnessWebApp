@@ -1,9 +1,8 @@
 import React, { useState, useContext } from 'react';
-import ForumContext from '../../context/forum/forumContext';
 import AuthContext from '../../context/auth/authContext';
+import  PropTypes from 'prop-types';
 
 const FormItem = ({ addAMessage }) => {
-    const formContext = useContext(ForumContext);
     const authContext = useContext(AuthContext);
 
     const { user } = authContext;
@@ -40,6 +39,7 @@ const FormItem = ({ addAMessage }) => {
                 id='message'
                 value={message}
                 onChange={onChange}
+                required
                 />
             </div>
             <input 
@@ -52,5 +52,9 @@ const FormItem = ({ addAMessage }) => {
         </div>
     )
 }
+
+FormItem.propTypes = {
+    addAMessage: PropTypes.func
+  };
 
 export default FormItem

@@ -100,7 +100,7 @@ const AdminCoach = (props) => {
                                     <td>{theUser.name}</td>
                                     <td>{theUser.email}</td>
                                     <td>{theUser.fitnessLevel}</td>
-                                    <td>{theUser.numOfWorkoutsCompleted}</td>
+                                    <td>{theUser.workoutsCompleted.length}</td>
                                 </tr>
                                 
                                 
@@ -169,6 +169,40 @@ const AdminCoach = (props) => {
                     }
                     {showForm && <button className="workoutbutton" onClick={() => setShowForm(false)}>Cancel</button>}
                     
+            </div>
+
+            <div className="workoutbox scrolltable">
+                    <h3>Workouts Completed by Users</h3>
+                    <table className="resultstable">
+                        <thead>
+                            <tr>
+                            <th>Name of User</th>
+                            <th>Workout Completed</th>
+                            <th>Date Completed</th>
+                            </tr>
+                        </thead>
+                        <tbody id="bodyOfTable">
+                            {users.length > 0 && (users.map((theUser) => (
+                                theUser.workoutsCompleted.map((workout) => (
+                                    <tr key={workout._id}>
+                                    <td>{theUser.name}</td>
+                                    <td>{workout.name}</td>
+                                    <td>{separateDate(workout.date)}</td>
+                                </tr>
+                                ))
+                                
+                                
+                                
+                                
+                            ))
+                            )
+                                
+                            }
+                            
+                            
+                        </tbody>
+                        
+                    </table> 
             </div>
         </div>
     )

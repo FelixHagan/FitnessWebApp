@@ -10,10 +10,29 @@ const TimerItem = () => {
     const { workout } = location.state;
     const authContext = useContext(AuthContext);
 
+    const { loadUser, updateWorkoutsCompleted, user } = authContext;
+
     useEffect(() => {
-        authContext.loadUser();
+        loadUser();
+        updateTheWorkouts({
+            name: workout.name,
+            description: workout.description
+        });
         // eslint-disable-next-line
     }, []);
+
+    const [completedWorkouts, setCompletedWorkouts] = useState({
+        workoutsCompleted: user.workoutsCompleted
+    });
+
+    const { workoutsCompleted } = completedWorkouts;
+
+    const updateTheWorkouts = (workout) => {
+        setCompletedWorkouts({
+            ...completedWorkouts,
+            workoutsCompleted: [...workoutsCompleted, workout] 
+        });
+    }
 
     // const { id, name, fitnessLevel, description, startWorkout, 
     // currentExerciseOn, exercises } = workout;
@@ -33,6 +52,8 @@ const TimerItem = () => {
     console.log(exercisesNames);
     console.log(exerciseVideoUrl);
 
+    console.log(workout);
+    
     useEffect(() => {
         let timer;
         if (currentWorkoutOn < 10){
@@ -41,7 +62,10 @@ const TimerItem = () => {
 
             }, 10000)
             
+        } else if (currentWorkoutOn === 10) {
+            updateWorkoutsCompleted(completedWorkouts, user._id);
         }
+
        return () => {
                 clearTimeout(timer);
             }

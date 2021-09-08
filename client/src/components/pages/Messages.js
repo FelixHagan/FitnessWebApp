@@ -3,7 +3,7 @@ import MessageItem from '../items/MessageItem';
 import ForumContext from '../../context/forum/forumContext';
 import FormItem from '../items/FormItem';
 import TopicItem from '../items/TopicItem';
-
+import PropTypes from 'prop-types';
 
 const Messages = ({ individualTopic }) => {
     const forumContext = useContext(ForumContext);
@@ -30,7 +30,7 @@ const Messages = ({ individualTopic }) => {
 
     const addAMessage = (newMessage) => {
         setUpdateTopic({ ...updateTopic, messages: [...messages, newMessage]});
-        
+        showTheForm();
     }
 
     const reportTheMessage = (updatedMessage) => {
@@ -67,5 +67,9 @@ const Messages = ({ individualTopic }) => {
         </>
     )
 }
+
+Messages.propTypes = {
+    individualTopic: PropTypes.object
+  };
 
 export default Messages

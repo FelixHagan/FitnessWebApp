@@ -190,6 +190,7 @@ overall plan styling
     width: 100%;
     background-color: rgb(39, 38, 38);
     padding-bottom: 1em;
+    min-height: 800px;
 }
 
 .buttoncontainer {
@@ -266,6 +267,7 @@ boxes to go inside flex box container
     border-radius: .5em;
     flex-basis: 20em;
     text-align: center;
+    box-shadow: 0.1em 0.1em 0.5em black;
 }
 
 /*
@@ -591,6 +593,7 @@ message the coach styling
         background-color: var(--navbar-color);
         right: 0;
         top: 10;
+        min-width: 12em;
     }
 
     .navbar ul {

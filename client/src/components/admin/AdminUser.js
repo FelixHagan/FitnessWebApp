@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import AuthContext from '../../context/auth/authContext';
 import AdminContext from '../../context/admin/adminContext';
 import ForumContext from '../../context/forum/forumContext';
+import { PromiseProvider } from 'mongoose';
 
 const AdminUser = (props) => {
     const authContext = useContext(AuthContext);
@@ -23,6 +24,8 @@ const AdminUser = (props) => {
         if(user !== null) {
             if (user.userType === "1"){
                 props.history.push('/');
+            } else if (user.userType === "3"){
+                props.history.push('/adminCoach')
             }
         }
        
@@ -85,7 +88,7 @@ const AdminUser = (props) => {
                                     <td>{theUser.name}</td>
                                     <td>{theUser.email}</td>
                                     <td>{theUser.fitnessLevel}</td>
-                                    <td>{theUser.numOfWorkoutsCompleted}</td>
+                                    <td>{theUser.workoutsCompleted.length}</td>
                                     <td><button onClick={() => deleteUser(theUser._id)}>Remove User</button></td>
                                 </tr>
                             ))

@@ -12,6 +12,7 @@ import Plan from './components/pages/Plan';
 import HiitPlan from './components/pages/HiitPlan';
 import NewProgram from './components/pages/NewProgram';
 import MessageCoach from './components/pages/MessageCoach';
+import History from './components/pages/History';
 import Register from './components/auth/Register';
 import Login from './components/auth/Login';
 import PrivateRoute from './components/routing/PrivateRoute';
@@ -63,6 +64,7 @@ const App = () => {
             <PrivateRoute exact path='/adminUser' component={AdminUser} />
             <PrivateRoute exact path='/messageCoach' component={MessageCoach} />
             <PrivateRoute exact path='/adminCoach' component={AdminCoach} />
+            <PrivateRoute exact path='/history' component={History} />
             <Route exact path='/register' component={Register} />
             <Route exact path='/login' component={Login} />
           </Switch>

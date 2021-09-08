@@ -11,7 +11,9 @@ import {
     LOGIN_SUCCESS,
     LOGIN_FAIL,
     LOGOUT,
-    CLEAR_ERRORS
+    CLEAR_ERRORS,
+    UPDATE_USER,
+    UPDATE_ERROR
 } from '../types';
 
 const AuthState = props => {
@@ -100,6 +102,27 @@ const AuthState = props => {
     // Clear Errors
     const clearErrors = () => dispatch({ type: CLEAR_ERRORS })
 
+    // Update Workouts Completed
+    const updateWorkoutsCompleted = async (completedWorkouts, userId) => {
+        const config = {
+            header: {
+                'Content-Type': 'application/json'
+            }
+        }
+
+        try {
+            const res = await axios.put(`/api/users/${userId}`, completedWorkouts, config);
+
+            dispatch({ type: UPDATE_USER, payload: res.data });
+        } catch (err) {
+            dispatch({
+                type: UPDATE_ERROR,
+                payload: err.response.msg
+            })
+        }
+        
+    }
+
     return (
         <AuthContext.Provider
         value={{
@@ -111,7 +134,9 @@ const AuthState = props => {
             register,
             loadUser,
             login,
-            logout
+            logout,
+            updateWorkoutsCompleted,
+            clearErrors
         }}>
             {props.children}
         </AuthContext.Provider>

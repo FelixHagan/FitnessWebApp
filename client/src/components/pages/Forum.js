@@ -35,25 +35,13 @@ const Forum = () => {
             ))}
 
             {showAddTopicForum && <div className="workoutscontainer">
-                <TopicForum />
+                <TopicForum showTheTopicForum={showTheTopicForum}/>
             </div>}
 
             
             <button className="workoutbutton addtopicbutton" onClick={showTheTopicForum}>{showAddTopicForum ? 'Cancel' : 'Create new topic'}</button>
         </div>
 
-        {/*}
-        <div className="workoutscontainer">
-            <FormItem />
-        </div>
-        <div className="outermessagecontainer">
-            {messages.map(individualMessage => (
-                <MessageItem key={individualMessage.id} individualMessage={individualMessage}/>
-            ))}
-            
-            <button className="workoutbutton">Add message</button>
-        </div>
-            {*/}
         </>
     )
 }

@@ -1,8 +1,9 @@
 import React, { useContext, useState } from 'react';
 import ForumContext from '../../context/forum/forumContext';
 import AuthContext from '../../context/auth/authContext';
+import PropTypes from 'prop-types';
 
-const TopicForum = () => {
+const TopicForum = ({ showTheTopicForum }) => {
     const forumContext = useContext(ForumContext);
     const authContext = useContext(AuthContext);
 
@@ -21,6 +22,7 @@ const TopicForum = () => {
     const onSubmit = e => {
         e.preventDefault();
         forumContext.addTopic(newTopic);
+        showTheTopicForum();
         setNewTopic({
             user: user.name,
             description: "",
@@ -42,6 +44,7 @@ const TopicForum = () => {
                 id='description'
                 value={description}
                 onChange={onChange}
+                required
                 />
             </div>
             
@@ -50,5 +53,9 @@ const TopicForum = () => {
         </div>
     )
 }
+
+TopicForum.propTypes = {
+    showTheTopicForum: PropTypes.func
+  };
 
 export default TopicForum

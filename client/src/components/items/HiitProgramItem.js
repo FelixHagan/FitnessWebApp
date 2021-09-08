@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import couchto5kimage from '../../images/couchto5kimage.jpeg'
+import hiitprogramimage from '../../images/hiitprogram.jpeg'
 
 const HiitProgramItem = ({ individualProgram }) => {
     const { name, description } = individualProgram;
@@ -12,7 +12,7 @@ const HiitProgramItem = ({ individualProgram }) => {
         <div className="programsbox" >
             
             <h2>{name}</h2>
-            {/*}<div className="homesectionboxes"><img src={couchto5kimage} alt={"couchTo5KImage"} className="homeimg"></img></div>{*/}
+            <div className="homesectionboxes"><img src={hiitprogramimage} alt={"hiitprogramimage"} className="homeimg"></img></div>
             <p>{description}</p>
             <Link className="workoutbutton" to={{
                 pathname: '/hiitPlan',

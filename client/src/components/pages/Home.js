@@ -3,6 +3,8 @@ import pressUpImage from '../../images/pressupimage.jpg';
 import abexercise from '../../images/abexercise.jpeg';
 import runningimage from '../../images/runningimage.jpeg';
 import parkexercising from '../../images/parkexercising.jpeg';
+import coachimage from '../../images/coachPage.jpeg';
+import historyimage from '../../images/history.jpeg'
 import AuthContext from '../../context/auth/authContext';
 
 const Home = () => {
@@ -56,6 +58,9 @@ const Home = () => {
                         you should do on those days. You can choose to carry out 
                         the couch to 5K which is
                         a running plan which will have you running 5K in no time. 
+                        The are also High Intensity Interval training programs. 
+                        These programs contain workouts that are designed to work the 
+                        whole body and get the heart racing. 
                         You can also choose to make your own plan and structure your 
                         own training. 
                     </p>
@@ -75,6 +80,34 @@ const Home = () => {
                     </p>
                 </div>
                 <div className="homesectionboxes"><img src={parkexercising} alt={"parkExercising"} className="homeimg"></img></div>
+        
+            </div>
+
+            <div className="homesection1">
+                <div className="homesectionboxes">
+                    <h2>Msg Coach</h2>
+                    <p>
+                        You can contact a coach by messaging directly on the Msg Coach 
+                        page. You can mesage a coach if you have any training problems 
+                        or ask a coach for training advice. 
+    
+                    </p>
+                
+                </div>
+                <div className="homesectionboxes"><img src={coachimage} alt={"coachImage"} className="homeimg"></img></div>
+                
+            </div>
+
+            <div className="homesection2">
+                <div className="homesectionboxes">
+                    <h2>History</h2>
+                    <p>
+                        You can find and view all the workouts that you have completed on 
+                        the history page. You can see the name and description of the workouts 
+                        that you have completed, as well as the date you completed them. 
+                    </p>
+                </div>
+                <div className="homesectionboxes"><img src={historyimage} alt={"historyimage"} className="homeimg"></img></div>
         
             </div>
         </div>

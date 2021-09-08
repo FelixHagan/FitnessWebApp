@@ -6,7 +6,8 @@ import WorkoutContext from '../../context/workout/workoutContext';
 import CreateProgramContext from '../../context/createProgram/createProgramContext'; 
 import ForumContext from '../../context/forum/forumContext';
 import AdminContext from '../../context/admin/adminContext';
-import MessageCoachContext from '../../context/messageCoach/messageCoachContext'
+import MessageCoachContext from '../../context/messageCoach/messageCoachContext';
+import { FaBars } from 'react-icons/fa';
 
 const Navbar = ({ title }) => {
     const authContext = useContext(AuthContext);
@@ -37,7 +38,8 @@ const Navbar = ({ title }) => {
     }    
 
     useEffect(()=> {
-        const mobilediv = document.getElementById("mobileview");
+        if (authContext.user && authContext.user.userType === "1") {
+            const mobilediv = document.getElementById("mobileview");
         if (displayMobile){
             mobilediv.classList.add("nodisplay");
         } else {
@@ -45,6 +47,8 @@ const Navbar = ({ title }) => {
         }
         
         console.log(displayMobile);
+        } 
+        
     })
 
     const logoutUser = () => {
@@ -75,19 +79,23 @@ const Navbar = ({ title }) => {
                         {title}
                     </h2>
                     
-                        
+                        {authContext.user && <p>{authContext.user.name}</p>}
+
                         {!isAuthenticated ? loginRegister : <div>
                             <a onClick={logoutUser}>Logout</a>
                         </div>}
                     
                 
                     
+                    {authContext.user && authContext.user.userType === "1" &&
+                        <p onClick={handleClick} className="burgermenu"><FaBars/></p>
+                    }
                     
-                    <p onClick={handleClick} className="burgermenu">burger menu</p>
                 </div>
 
                 
             </div>
+            {authContext.user && authContext.user.userType === "1" &&
             <div id="mobileview" className="navbar">
                 <div className="outercontainer">
                     
@@ -105,13 +113,17 @@ const Navbar = ({ title }) => {
                             <Link to='/forum' onClick={navClick}>Forum</Link>
                         </li>
                         <li>
-                            <Link to='/messageCoach' onClick={navClick}>Message Coach</Link>
+                            <Link to='/messageCoach' onClick={navClick}>Msg Coach</Link>
                         </li>
-                        
+                        <li>
+                            <Link to='/history' onClick={navClick}>History</Link>
+                        </li>
                     </ul>
                 </div>
                 
             </div>
+            }
+            
             
         </div>
     )

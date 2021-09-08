@@ -21,7 +21,7 @@ const Plan = () => {
                 <Link className="workoutbutton" to='/programs'>Back to programs</Link>
             </div>
             
-            {weeks.map((week, index) => (
+            {authContext.user && weeks.map((week, index) => (
                 <WeekPlan key={index} week={week} weekNum={index + 1}/>
 
             ))}

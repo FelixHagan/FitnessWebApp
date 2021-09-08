@@ -18,10 +18,22 @@ const UserSchema = mongoose.Schema({
         type: String,
         default: '1'
     },
-    numOfWorkoutsCompleted: {
-        type: Number,
-        default: 0
-    }, 
+    workoutsCompleted: [
+        {
+            name: {
+                type: String,
+                required: true
+            },
+            description: {
+                type: String,
+                required: true
+            },
+            date: {
+                type: Date,
+                default: Date.now
+            }
+        }
+    ], 
     date: {
         type: Date,
         default: Date.now
