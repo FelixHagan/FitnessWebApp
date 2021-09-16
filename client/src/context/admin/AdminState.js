@@ -6,14 +6,17 @@ import {
     GET_USERS,
     CLEAR_USERS,
     USERS_ERROR,
-    DELETE_USER
+    DELETE_USER,
+    FILTER_USERS,
+    CLEAR_FILTER
 } from '../types';
 
 const AdminState = props => {
     const initialState = {
         loading: true,
         users: [],
-        error: null
+        error: null,
+        filtered: null
     }
 
     const [state, dispatch] = useReducer(adminReducer, initialState);
@@ -57,15 +60,28 @@ const AdminState = props => {
         
     }
 
+    // Filter Users
+    const filterUsers = text => {
+        dispatch({ type: FILTER_USERS, payload: text});
+    }
+
+    // Clear Filter
+    const clearFilter = () => {
+        dispatch({ type: CLEAR_FILTER });
+    }
+
     return (
         <AdminContext.Provider
         value={{
             loading: state.loading,
             users: state.users,
             error: state.error,
+            filtered: state.filtered,
             loadUsers,
             clearUsers,
-            removeUser
+            removeUser,
+            filterUsers,
+            clearFilter
         }}>
             {props.children}
         </AdminContext.Provider>

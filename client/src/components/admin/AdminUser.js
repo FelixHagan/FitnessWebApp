@@ -31,8 +31,6 @@ const AdminUser = (props) => {
        
     }, [user])
 
-    
-
     const [updateTopic, setUpdateTopic] = useState({
         id: "",
         user: "",
@@ -40,6 +38,8 @@ const AdminUser = (props) => {
         date: "",
         messages: []
     })
+
+    const [wantToDelete, setWantToDelete] = useState("");
 
     useEffect(() => {
         if (updateTopic.user !== "") {
@@ -62,6 +62,11 @@ const AdminUser = (props) => {
 
     const deleteUser = (id) => {
         removeUser(id);
+        setWantToDelete("");
+    }
+
+    const checkIfDelete = (id) => {
+        setWantToDelete(id);
     }
     
     
@@ -89,7 +94,11 @@ const AdminUser = (props) => {
                                     <td>{theUser.email}</td>
                                     <td>{theUser.fitnessLevel}</td>
                                     <td>{theUser.workoutsCompleted.length}</td>
-                                    <td><button onClick={() => deleteUser(theUser._id)}>Remove User</button></td>
+                                    <td>{wantToDelete === theUser._id ? <> <p>Are You Sure?</p>
+                                    <button onClick={() => deleteUser(theUser._id)}>Yes</button> 
+                                    <button onClick={() => checkIfDelete("")}>No</button></> : 
+                                    <button onClick={() => checkIfDelete(theUser._id)}>Remove User</button>
+                                    }</td>
                                 </tr>
                             ))
                             )
@@ -120,7 +129,12 @@ const AdminUser = (props) => {
                                     <td>{message.user}</td>
                                     <td>{message.message}</td>
                                     <td>{message.date}</td>
-                                    <td><button onClick={() => removeMessage(theTopic, message._id)}>Remove Message</button></td>
+                                    <td>{wantToDelete === message._id ? <> <p>Are You Sure?</p>
+                                    <button onClick={() => removeMessage(theTopic, message._id)}>Yes</button> 
+                                    <button onClick={() => checkIfDelete("")}>No</button></> : 
+                                    <button onClick={() => checkIfDelete(message._id)}>Remove Message</button>
+                                    }</td>
+                                    
                                 </tr> 
                                 
                                 ))

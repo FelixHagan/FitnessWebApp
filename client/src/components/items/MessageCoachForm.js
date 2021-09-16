@@ -46,6 +46,7 @@ const MessageCoachForm = ({ showTheForm }) => {
                 id='message'
                 value={message}
                 onChange={onChange}
+                required
                 />
             </div>
             <input type="submit" value="Add Message" className="buttoncolour"/>

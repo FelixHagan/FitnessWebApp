@@ -11,7 +11,7 @@ const MessageCoachSchema = mongoose.Schema({
     },
     message: {
         type: String,
-        required: true
+        default: ""
     },
     reply: {
         type: String,

@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import AuthContext from '../../context/auth/authContext';
 import MessageCoachContext from '../../context/messageCoach/messageCoachContext';
 import AdminContext from '../../context/admin/adminContext';
+import UsersFilterItem from '../items/UsersFilterItem';
 
 const AdminCoach = (props) => {
     const authContext = useContext(AuthContext);
@@ -9,8 +10,8 @@ const AdminCoach = (props) => {
     const adminContext = useContext(AdminContext);
 
     const { loadUser, user } = authContext;
-    const { loadUsers, users } = adminContext;
-    const { getAllMessages, messages, addReply } = messageCoachContext;
+    const { loadUsers, users, filtered } = adminContext;
+    const { getAllMessages, messages, addReply, addMessage } = messageCoachContext;
 
     useEffect(() => {
         loadUser();
@@ -40,6 +41,8 @@ const AdminCoach = (props) => {
 
     const [showForm, setShowForm] = useState(false);
 
+    const [addMessageForm, setAddMessageForm] = useState(false);
+
     const { reply } = updateMessage;
 
     const onChange = e => setUpdateMessage({ ...updateMessage, [e.target.name]: e.target.value });
@@ -48,6 +51,21 @@ const AdminCoach = (props) => {
         e.preventDefault();
         addReply(updateMessage);
         setShowForm(false);
+        setUpdateMessage({
+            id: "",
+            user: "",
+            name: "",
+            message: "",
+            reply: "",
+            date: "",
+            email: ""
+        })
+    }
+
+    const newMessageSubmit = (e) => {
+        e.preventDefault();
+        addMessage(updateMessage);
+        setAddMessageForm(false);
         setUpdateMessage({
             id: "",
             user: "",
@@ -72,6 +90,16 @@ const AdminCoach = (props) => {
         setShowForm(true);
     }
 
+    const handleCreateMessage = (theUserId, theUserName) => {
+        setUpdateMessage({
+            user: theUserId,
+            name: theUserName,
+            email: user.email,
+            message: ""
+        });
+        setAddMessageForm(true);
+    }
+
     const separateDate = (date) => {
         let year = date.split("T");
         return year[0];
@@ -91,6 +119,7 @@ const AdminCoach = (props) => {
                             <th>Email</th>
                             <th>Fitness Level</th>
                             <th>Number of Workouts Completed</th>
+                            <th>Message User</th>
                             </tr>
                         </thead>
                         <tbody id="bodyOfTable">
@@ -101,10 +130,9 @@ const AdminCoach = (props) => {
                                     <td>{theUser.email}</td>
                                     <td>{theUser.fitnessLevel}</td>
                                     <td>{theUser.workoutsCompleted.length}</td>
+                                    <td><button onClick={() => handleCreateMessage(theUser._id, theUser.name)}>Message</button></td>
                                 </tr>
-                                
-                                
-                                
+                                 
                             ))
                             )
                                 
@@ -113,7 +141,30 @@ const AdminCoach = (props) => {
                             
                         </tbody>
                         
-                    </table> 
+                    </table>
+                    {addMessageForm && 
+                    <div className="formcontainer alignleft">
+                        <form onSubmit={newMessageSubmit}>
+                            <h2>Add Reply</h2>
+                                
+                            <div className="labelinputcontainer">
+                                <label htmlFor='reply'>Add Reply:</label>
+                                <textarea 
+                                rows='4'
+                                placeholder='Message'
+                                name='reply'
+                                id='reply'
+                                value={reply}
+                                onChange={onChange}
+                                required
+                                />
+                            </div>
+                            <input type="submit" value="Send Message" className="buttoncolour"/>
+                        </form>
+                    </div>
+                    }
+                    {addMessageForm && <button className="workoutbutton" onClick={() => setAddMessageForm(false)}>Cancel</button>}
+                     
             </div>
 
             <div className="workoutbox scrolltable">
@@ -173,7 +224,31 @@ const AdminCoach = (props) => {
 
             <div className="workoutbox scrolltable">
                     <h3>Workouts Completed by Users</h3>
-                    <table className="resultstable">
+                    <UsersFilterItem />
+                    {filtered !== null ? 
+                        <table className="resultstable">
+                        <thead>
+                            <tr>
+                            <th>Name of User</th>
+                            <th>Workout Completed</th>
+                            <th>Date Completed</th>
+                            </tr>
+                        </thead>
+                        <tbody id="bodyOfTable">
+                            {filtered.length > 0 && (filtered.map((theUser) => (
+                                theUser.workoutsCompleted.map((workout) => (
+                                    <tr key={workout._id}>
+                                    <td>{theUser.name}</td>
+                                    <td>{workout.name}</td>
+                                    <td>{separateDate(workout.date)}</td>
+                                </tr>
+                                ))  
+                            ))
+                            )
+                            }
+                        </tbody>
+                    </table>
+                    : <table className="resultstable">
                         <thead>
                             <tr>
                             <th>Name of User</th>
@@ -189,20 +264,14 @@ const AdminCoach = (props) => {
                                     <td>{workout.name}</td>
                                     <td>{separateDate(workout.date)}</td>
                                 </tr>
-                                ))
-                                
-                                
-                                
-                                
+                                ))  
                             ))
                             )
-                                
                             }
-                            
-                            
                         </tbody>
-                        
                     </table> 
+                    }
+                    
             </div>
         </div>
     )

@@ -7,11 +7,14 @@ const MessageCoachItem = ({ theMessage }) => {
 
     return (
         <>
-            <div className="messagecoach">
-                <div className="innermessage">
-                    {message}
+            {message.length > 0 && 
+                <div className="messagecoach">
+                    <div className="innermessage">
+                        {message}
+                    </div>
                 </div>
-            </div>
+            }
+            
             {reply.length > 0 && 
             <div className="replycoach">
                 <div className="innerreply">

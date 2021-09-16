@@ -22,7 +22,7 @@ router.get('/', auth, async (req, res) => {
 // @route   POST api/messageCoach
 // @desc    add a message
 // @access  Private
-router.post('/', [ auth, [ check('message', 'Message is required').not().isEmpty()] ], async (req, res) => {
+router.post('/', auth, async (req, res) => {
     const errors = validationResult(req);
     if(!errors.isEmpty()){
         return res.status(400).json({ errors: errors.array() });
