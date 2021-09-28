@@ -2,31 +2,36 @@ import React, { useState, useContext, useEffect } from 'react';
 import NewProgramForum from './NewProgramForum';
 import CreateProgramContext from '../../context/createProgram/createProgramContext';
 import AuthContext from '../../context/auth/authContext';
+import PropTypes from 'prop-types';
 
 const NewProgramWeek = ({ newProgram }) => {
     const createProgramContext = useContext(CreateProgramContext);
     const authContext = useContext(AuthContext);
 
     const { current, setCurrent, clearCurrent, deleteProgram } = createProgramContext;
-    const { loadUser, updateWorkoutsCompleted, user } = authContext;
+    const { updateWorkoutsCompleted, user } = authContext;
 
     const { programName, mondayName, mondayDescription, tuesdayName, tuesdayDescription, wednesdayName, wednesdayDescription,
         thursdayName, thursdayDescription, fridayName, fridayDescription, saturdayName, saturdayDescription, 
         sundayName, sundayDescription, _id } = newProgram;
 
+    // state to hold if form should be shown 
     const [showForm, setShowForm] = useState(false);
 
+    // holds the workout that is marked completed to add to history
     const [markCompleted, setMarkCompleted] = useState({
         name: "",
         description: ""
     });
 
+    // holds all the users completed workouts 
     const [completedWorkouts, setCompletedWorkouts] = useState({
         workoutsCompleted: user.workoutsCompleted
     });
 
     const { workoutsCompleted } = completedWorkouts;
 
+    // updates the completedWorkouts state by adding another completed workout
     const updateTheWorkouts = (workout) => {
         setCompletedWorkouts({
             ...completedWorkouts,
@@ -34,6 +39,7 @@ const NewProgramWeek = ({ newProgram }) => {
         });
     }
 
+    // runs when markCompleted is changed
     useEffect(() => {
         if (markCompleted.name !== "") {
             updateTheWorkouts({
@@ -51,12 +57,15 @@ const NewProgramWeek = ({ newProgram }) => {
         return () => clearTimeout(timer);
     }, [markCompleted]);
 
+    // runs when completedWorkouts is changed 
     useEffect(() => {
+        // checks if the completedWorkouts state has had a completed workout added to it
         if (completedWorkouts.workoutsCompleted.length !==  user.workoutsCompleted.length)
         updateWorkoutsCompleted(completedWorkouts, user._id);
     }, [completedWorkouts]);
 
-    
+    // if there is nothing in the current part of the state add 
+    // newProgram to the current part of the state
     const handleUpdate = () => {
         if (current) {
             clearCurrent();
@@ -71,6 +80,7 @@ const NewProgramWeek = ({ newProgram }) => {
         clearCurrent();
     }
 
+    // run when user clicks Mark workout completed and add to history 
     const handleClick = (name, description) => {
         setMarkCompleted({
             name: name,
@@ -172,7 +182,7 @@ const NewProgramWeek = ({ newProgram }) => {
                     Mark workout completed and add to history
                 </button>)}
             </div>
-            {showForm ? <div className="programsbox"><NewProgramForum /><button className="workoutbutton" onClick={handleUpdate}>Cancel</button></div> : 
+            {showForm ? <div className="programsbox"><NewProgramForum cancelForm={() => setShowForm(false)}/><button className="workoutbutton" onClick={handleUpdate}>Cancel</button></div> : 
             <div><button className="workoutbutton" onClick={handleUpdate}>Update</button>
             <button className="workoutbutton" onClick={handleDelete}>Delete</button></div>}
             
@@ -184,6 +194,10 @@ const NewProgramWeek = ({ newProgram }) => {
     
         
     )
+}
+
+NewProgramWeek.propTypes = {
+    newProgram: PropTypes.object
 }
 
 export default NewProgramWeek

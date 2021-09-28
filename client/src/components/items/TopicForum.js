@@ -9,6 +9,7 @@ const TopicForum = ({ showTheTopicForum }) => {
 
     const { user } = authContext;
 
+    // state to hold the new topic
     const [newTopic, setNewTopic] = useState({
         user: user.name,
         description: "",
@@ -19,6 +20,7 @@ const TopicForum = ({ showTheTopicForum }) => {
 
     const onChange = e => setNewTopic({ ...newTopic, [e.target.name]: e.target.value });
 
+    // run when the topic is submitted
     const onSubmit = e => {
         e.preventDefault();
         forumContext.addTopic(newTopic);

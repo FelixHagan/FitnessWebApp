@@ -26,7 +26,7 @@ const AdminCoach = (props) => {
                 props.history.push('/');
             }
         }
-       
+       // eslint-disable-next-line
     }, [user])
 
     const [updateMessage, setUpdateMessage] = useState({
@@ -100,6 +100,7 @@ const AdminCoach = (props) => {
         setAddMessageForm(true);
     }
 
+    // to make the date a more readable format
     const separateDate = (date) => {
         let year = date.split("T");
         return year[0];

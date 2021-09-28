@@ -1,9 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { FaCheckCircle } from 'react-icons/fa';
 
 const Day = ({ workoutCompleted }) => {
     const { date, name, description } = workoutCompleted;
 
+    // to make the date a more readable format
     const separateDate = (date) => {
         let year = date.split("T");
         return year[0];
@@ -25,6 +27,10 @@ const Day = ({ workoutCompleted }) => {
             </div>
         </div>
     )
+}
+
+Day.propTypes = {
+    workoutCompleted: PropTypes.object.isRequired
 }
 
 export default Day

@@ -16,6 +16,7 @@ const Messages = ({ individualTopic }) => {
         setShowAddMessageForm(!showAddMessageForm);
     }
     
+    // state to hold the updated topic
     const [updateTopic, setUpdateTopic] = useState({
         id: _id,
         user: user,
@@ -24,15 +25,19 @@ const Messages = ({ individualTopic }) => {
         messages: messages
     }) 
 
+    // runs when updateTopic has been changed
     useEffect(() => {
         forumContext.addMessage(updateTopic);
     }, [updateTopic])
 
+    // updates the updateTopic by adding another message to the updateTopics messages
     const addAMessage = (newMessage) => {
         setUpdateTopic({ ...updateTopic, messages: [...messages, newMessage]});
         showTheForm();
     }
 
+    // if the message ids match, the message will be replaced with the reported message
+    // if the ids dont match the original message will be put back into state
     const reportTheMessage = (updatedMessage) => {
         setUpdateTopic({ ...updateTopic, messages: messages.map(message => message._id === updatedMessage._id ?
              updatedMessage : message)})

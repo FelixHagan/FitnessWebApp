@@ -9,6 +9,7 @@ const Login = (props) => {
     const { setAlert } = alertContext;
     const { login, error, clearErrors, isAuthenticated, user } = authContext;
 
+    // checks which type the user is and then sends to the correct page
     useEffect(() => {
         if (isAuthenticated && user !== null) {
             if (user.userType === "1"){
@@ -35,8 +36,10 @@ const Login = (props) => {
 
     const { email, password } = theUser;
 
+    // runs when user types in form
     const onChange = e => setTheUser({ ...theUser, [e.target.name]: e.target.value });
 
+    // runs when user clicks login 
     const onSubmit = e => {
         e.preventDefault();
         if (email === '' || password === '') {

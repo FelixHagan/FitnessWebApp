@@ -2,17 +2,17 @@ import React, { useContext, useEffect, useState } from 'react';
 import AuthContext from '../../context/auth/authContext';
 import AdminContext from '../../context/admin/adminContext';
 import ForumContext from '../../context/forum/forumContext';
-import { PromiseProvider } from 'mongoose';
 
 const AdminUser = (props) => {
     const authContext = useContext(AuthContext);
     const adminContext = useContext(AdminContext);
     const forumContext = useContext(ForumContext);
 
-    const { loadUser, user, isAuthenticated } = authContext;
+    const { loadUser, user } = authContext;
     const { loadUsers, users, removeUser } = adminContext;
     const { getMessages, topics, addMessage } = forumContext;
 
+    // runs on mount
     useEffect(() => {
         loadUser();
         loadUsers();
@@ -28,7 +28,7 @@ const AdminUser = (props) => {
                 props.history.push('/adminCoach')
             }
         }
-       
+       // eslint-disable-next-line
     }, [user])
 
     const [updateTopic, setUpdateTopic] = useState({
@@ -41,13 +41,15 @@ const AdminUser = (props) => {
 
     const [wantToDelete, setWantToDelete] = useState("");
 
+    // runs when updateTopic is changed
     useEffect(() => {
         if (updateTopic.user !== "") {
             addMessage(updateTopic);
         }
-        
+        // eslint-disable-next-line
     }, [updateTopic])
 
+    // updates the updateTopic
     const removeMessage = (theTopic, messageid) => {
         setUpdateTopic({
             ...updateTopic,
@@ -60,11 +62,13 @@ const AdminUser = (props) => {
         
     }
 
+    // remove the user
     const deleteUser = (id) => {
         removeUser(id);
         setWantToDelete("");
     }
 
+    // check if the administrator wants to delete
     const checkIfDelete = (id) => {
         setWantToDelete(id);
     }

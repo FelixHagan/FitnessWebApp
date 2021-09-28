@@ -1,16 +1,16 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import WorkoutContext from '../../context/workout/workoutContext';
-import AuthContext from '../../context/auth/authContext';
 
 const HiitWeekPlan = ({ week, weekNum }) => {
     const workoutContext = useContext(WorkoutContext);
 
     const { run1, run2, run3 } = week;
 
-    const { findSpecific, clearSpecific, specificWorkout, workouts } = workoutContext;
+    const { findSpecific, specificWorkout } = workoutContext;
 
-   
+   // state to hold the specific workout
     const [theWorkouts, setTheWorkouts] = useState({
         workout: null
     });
@@ -19,8 +19,8 @@ const HiitWeekPlan = ({ week, weekNum }) => {
 
     const { workout } = theWorkouts;
 
+    // runs when the specific workout changes which happens after user clicks view description
     useEffect(() => {
-        //{run1 !== null && findSpecific(run1.name)}
         setTheWorkouts({
             ...theWorkouts,
             workout: specificWorkout
@@ -28,23 +28,11 @@ const HiitWeekPlan = ({ week, weekNum }) => {
 
     }, [specificWorkout])
 
-    
-
-    // console.log(weekNum);
-
+    // runs when user clicks view description
     const handleClick = (run, name) => {
         findSpecific(name);
         setmarkWorkout(run);
     }
-
-    /*
-    <Link className="workoutbutton" to={{
-                    pathname: '/timer',
-                    state: {
-                        workout: (workout1 !== null && workout1[0])
-                }
-            }}>Start Workout{workout1 !== null && console.log(workout1[0])}</Link>
-    */
 
     return (
         <>
@@ -70,7 +58,7 @@ const HiitWeekPlan = ({ week, weekNum }) => {
                     state: {
                         workout: (workout !== null && workout[0])
                 }
-                }}>Start Workout{workout !== null && console.log(workout[0])}</Link>
+                }}>Start Workout</Link>
                 </>
                 }
             </div>
@@ -96,7 +84,7 @@ const HiitWeekPlan = ({ week, weekNum }) => {
                     state: {
                         workout: (workout !== null && workout[0])
                 }
-                }}>Start Workout{workout !== null && console.log(workout[0])}</Link>
+                }}>Start Workout</Link>
                 </>
                 }
             </div>
@@ -123,7 +111,7 @@ const HiitWeekPlan = ({ week, weekNum }) => {
                     state: {
                         workout: (workout !== null && workout[0])
                 }
-                }}>Start Workout{workout !== null && console.log(workout[0])}</Link>
+                }}>Start Workout</Link>
                 </>
                 }
             </div>
@@ -147,6 +135,11 @@ const HiitWeekPlan = ({ week, weekNum }) => {
         </div>
         </>
     )
+}
+
+HiitWeekPlan.propTypes = {
+    week: PropTypes.object,
+    weekNum: PropTypes.number
 }
 
 export default HiitWeekPlan

@@ -15,6 +15,7 @@ const WorkoutFilterItem = () => {
 
     const onChange = e => {
         if(text.current.value !== ''){
+            // runs filterWorkouts method when user types into search bar
             filterWorkouts(e.target.value);
         } else {
             clearFilter();

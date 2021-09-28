@@ -101,13 +101,13 @@ router.put('/:id', async (req, res) => {
 });
 
 // @route   DELETE api/coach/:id
-// @desc    delete workout
+// @desc    delete program
 // @access  Private
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', auth, async (req, res) => {
     try {
         let program = await Coach.findById(req.params.id);
 
-        if (!program) return res.status(404).json({ msg: 'Running schedule not found' });
+        if (!program) return res.status(404).json({ msg: 'Program not found' });
 
         await Coach.findByIdAndRemove(req.params.id);
 

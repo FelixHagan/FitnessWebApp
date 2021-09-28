@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 const MessageItem = ({ individualMessage, reportTheMessage }) => {
     const { user, date, message, _id, flag } = individualMessage;
 
-    const [reportMessage, setReportMessage] = useState(flag);
+    const [wantToReport, setWantToReport] = useState(false);
 
     const [updatedMessage, setUpdatedMessage] = useState({
         _id: _id,
@@ -16,16 +16,19 @@ const MessageItem = ({ individualMessage, reportTheMessage }) => {
 
     let year = date.split("T");
 
+    // runs when updateMessage is changed which happens after the user confirms they 
+    // want to report the message
     useEffect(() => {
         reportTheMessage(updatedMessage)
     }, [updatedMessage])
 
+    // runs if the user confirms they want to report the message
     const handleClick = () => {
         setUpdatedMessage({
             ...updatedMessage,
-            flag: !reportMessage
+            flag: true
         });
-        setReportMessage(!reportMessage);
+        setWantToReport(false);
 
     }
 
@@ -37,16 +40,25 @@ const MessageItem = ({ individualMessage, reportTheMessage }) => {
             </div>
             <div className="messagebody">
                 <p>{message}</p>
-                <p style={{color: "red"}} onClick={handleClick}>
+
+                {wantToReport && !updatedMessage.flag ? <div>
+                    <p>Are you sure?</p> 
+                    <button onClick={handleClick} style={{color: "red"}}>Yes</button> 
+                    <button style={{color: "green"}} onClick={() => setWantToReport(false)}>No</button></div> :
+                    <p style={{color: "red"}} onClick={() => setWantToReport(true)}>
                     {updatedMessage.flag ? "Message Reported" : "Report Message"}
-                </p>
+                    </p>
+                }
+                
+                
             </div>
         </div>
     )
 }
 
 MessageItem.propTypes = {
-    individualMessage: PropTypes.object.isRequired
+    individualMessage: PropTypes.object.isRequired,
+    reportTheMessage: PropTypes.func
 }
 
 export default MessageItem

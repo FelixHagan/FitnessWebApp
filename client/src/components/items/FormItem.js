@@ -16,6 +16,7 @@ const FormItem = ({ addAMessage }) => {
 
     const onChange = e => setNewMessage({ ...newMessage, [e.target.name]: e.target.value });
 
+    // run when the user clicks Add Message
     const onSubmit = e => {
         e.preventDefault();
         addAMessage(newMessage);

@@ -10,6 +10,7 @@ const Workouts = () => {
 
     const { workouts, getWorkouts, loading, filtered } = workoutContext;
 
+    // loads the user and gets the workouts 
     useEffect(() => {
         authContext.loadUser();
         getWorkouts();

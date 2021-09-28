@@ -1,14 +1,17 @@
 import React, { useState, useContext, useEffect } from 'react';
 import CreateProgramContext from '../../context/createProgram/createProgramContext';
 import AuthContext from '../../context/auth/authContext';
+import PropTypes from 'prop-types';
 
-const NewProgramForum = () => {
+const NewProgramForum = ({ cancelForm }) => {
     const createProgramContext = useContext(CreateProgramContext);
     const authContext = useContext(AuthContext);
 
+    // destructure 
     const { addNewProgram, current, clearCurrent, updateProgram } = createProgramContext;
     const { user } = authContext;
 
+    // runs if createProgramContext or current changes
     useEffect(() => {
         if (current !== null) {
             setNewProgram(current);
@@ -34,6 +37,7 @@ const NewProgramForum = () => {
         }
     }, [createProgramContext, current])
 
+    // state to store new program
     const [newProgram, setNewProgram] = useState({
         user: user.id,
         programName: "",
@@ -53,12 +57,16 @@ const NewProgramForum = () => {
             sundayDescription: ""
     })
 
+    // destructure newProgram
     const { mondayName, mondayDescription, tuesdayName, tuesdayDescription, wednesdayName, wednesdayDescription,
         thursdayName, thursdayDescription, fridayName, fridayDescription, saturdayName, saturdayDescription, 
         sundayName, sundayDescription, programName} = newProgram;
 
     const onChange = e => setNewProgram({ ...newProgram, [e.target.name]: e.target.value });
 
+    // runs when form is submitted 
+    // checks if a new program is being added or a program is being updated and then runs the 
+    // apropriate method 
     const onSubmit = e => {
         e.preventDefault();
         if (current === null) {
@@ -66,7 +74,7 @@ const NewProgramForum = () => {
         } else {
             updateProgram(newProgram);
         }
-        
+        // set back to default values 
         setNewProgram({
             user: user._id,
             programName: "",
@@ -85,6 +93,8 @@ const NewProgramForum = () => {
             sundayName: "",
             sundayDescription: ""
         })
+        clearCurrent();
+        cancelForm();
     }
 
     return (
@@ -101,6 +111,7 @@ const NewProgramForum = () => {
                     id='programname'
                     value={programName}
                     onChange={onChange}
+                    required
                     />
                 </div> 
                 
@@ -113,6 +124,7 @@ const NewProgramForum = () => {
                     id='mondayname'
                     value={mondayName}
                     onChange={onChange}
+                    required
                     />
                 </div> 
 
@@ -125,6 +137,7 @@ const NewProgramForum = () => {
                     id='mondaydescription'
                     value={mondayDescription}
                     onChange={onChange}
+                    required
                     />
                 </div> 
 
@@ -137,6 +150,7 @@ const NewProgramForum = () => {
                     id='tuesdayname'
                     value={tuesdayName}
                     onChange={onChange}
+                    required
                     />
                 </div> 
 
@@ -149,6 +163,7 @@ const NewProgramForum = () => {
                     id='tuesdaydescription'
                     value={tuesdayDescription}
                     onChange={onChange}
+                    required
                     />
                 </div> 
 
@@ -161,6 +176,7 @@ const NewProgramForum = () => {
                     id='wednesdayname'
                     value={wednesdayName}
                     onChange={onChange}
+                    required
                     />
                 </div> 
 
@@ -173,6 +189,7 @@ const NewProgramForum = () => {
                     id='wednesdaydescription'
                     value={wednesdayDescription}
                     onChange={onChange}
+                    required
                     />
                 </div> 
 
@@ -185,6 +202,7 @@ const NewProgramForum = () => {
                     id='thursdayname'
                     value={thursdayName}
                     onChange={onChange}
+                    required
                     />
                 </div> 
 
@@ -197,6 +215,7 @@ const NewProgramForum = () => {
                     id='thursdaydescription'
                     value={thursdayDescription}
                     onChange={onChange}
+                    required
                     />
                 </div> 
 
@@ -209,6 +228,7 @@ const NewProgramForum = () => {
                     id='fridayname'
                     value={fridayName}
                     onChange={onChange}
+                    required
                     />
                 </div> 
 
@@ -221,6 +241,7 @@ const NewProgramForum = () => {
                     id='fridaydescription'
                     value={fridayDescription}
                     onChange={onChange}
+                    required
                     />
                 </div> 
 
@@ -233,6 +254,7 @@ const NewProgramForum = () => {
                     id='saturdayname'
                     value={saturdayName}
                     onChange={onChange}
+                    required
                     />
                 </div> 
 
@@ -245,6 +267,7 @@ const NewProgramForum = () => {
                     id='saturdaydescription'
                     value={saturdayDescription}
                     onChange={onChange}
+                    required
                     />
                 </div> 
 
@@ -257,6 +280,7 @@ const NewProgramForum = () => {
                     id='sundayname'
                     value={sundayName}
                     onChange={onChange}
+                    required
                     />
                 </div> 
 
@@ -269,6 +293,7 @@ const NewProgramForum = () => {
                     id='sundaydescription'
                     value={sundayDescription}
                     onChange={onChange}
+                    required
                     />
                 </div> 
                 <input type="submit" value={current ? "Update Program" : "Create Program"} className="buttoncolour button"/>
@@ -277,5 +302,10 @@ const NewProgramForum = () => {
         </div>
     )
 }
+
+NewProgramForum.propTypes = {
+    cancelForm: PropTypes.func
+  }
+  
 
 export default NewProgramForum;

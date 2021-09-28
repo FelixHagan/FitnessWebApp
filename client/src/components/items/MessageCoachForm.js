@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import MessageCoachContext from '../../context/messageCoach/messageCoachContext';
 import AuthContext from '../../context/auth/authContext';
+import PropTypes from 'prop-types';
 
 const MessageCoachForm = ({ showTheForm }) => {
     const messageCoachContext = useContext(MessageCoachContext);
@@ -9,6 +10,7 @@ const MessageCoachForm = ({ showTheForm }) => {
     const { user } = authContext;
     const { addMessage } = messageCoachContext;
 
+    // state to hold the message that is typed into the form
     const [newMessage, setNewMessage] = useState({
         user: user._id,
         name: user.name,
@@ -20,6 +22,7 @@ const MessageCoachForm = ({ showTheForm }) => {
 
     const onChange = e => setNewMessage({ ...newMessage, [e.target.name]: e.target.value });
 
+    // runs when the Add Message button is clicked
     const onSubmit = e => {
         e.preventDefault();
         addMessage(newMessage);
@@ -53,6 +56,10 @@ const MessageCoachForm = ({ showTheForm }) => {
         </form>
         </div>
     )
+}
+
+MessageCoachForm.propTypes = {
+    showTheForm: PropTypes.func
 }
 
 export default MessageCoachForm

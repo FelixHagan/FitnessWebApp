@@ -10,6 +10,7 @@ const Register = (props) => {
 
     const { setAlert } = alertContext;
 
+    // if user doesnt exist then the user is sent to the homepage
     useEffect(() => {
         if (isAuthenticated) {
             props.history.push('/');
@@ -22,6 +23,7 @@ const Register = (props) => {
         // eslint-disable-next-line
     }, [error, isAuthenticated, props.history]);
 
+    // state to store the user information that is typed into the form
     const [user, setUser] = useState({
         name: "",
         email: "",
@@ -33,6 +35,7 @@ const Register = (props) => {
 
     const onChange = e => setUser({ ...user, [e.target.name]: e.target.value });
 
+    // if the passwords match then the user is registered
     const onSubmit = e => {
         e.preventDefault();
         if (password !== password2) {

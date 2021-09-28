@@ -1,23 +1,26 @@
 import React, { useState, useEffect, useContext } from 'react';
 import AuthContext from '../../context/auth/authContext';
+import PropTypes from 'prop-types';
 
 const WeekPlan = ({ week, weekNum }) => {
     const authContext = useContext(AuthContext);
-    const { loadUser, updateWorkoutsCompleted, user } = authContext;
+    const { updateWorkoutsCompleted, user } = authContext;
 
-    const [showForm, setShowForm] = useState(false);
-
+    // state to hold the workout that has been marked completed
     const [markCompleted, setMarkCompleted] = useState({
         name: "",
         description: ""
     });
 
+    // state to hold the completed workouts which is initially set the previous workouts
+    // that have been completed by the user
     const [completedWorkouts, setCompletedWorkouts] = useState({
         workoutsCompleted: user.workoutsCompleted
     });
 
     const { workoutsCompleted } = completedWorkouts;
 
+    // adds a workout to the completedWorkouts
     const updateTheWorkouts = (workout) => {
         setCompletedWorkouts({
             ...completedWorkouts,
@@ -25,6 +28,7 @@ const WeekPlan = ({ week, weekNum }) => {
         });
     }
 
+    // runs when completed workouts is changed
     useEffect(() => {
         if (markCompleted.name !== "") {
             updateTheWorkouts({
@@ -32,7 +36,7 @@ const WeekPlan = ({ week, weekNum }) => {
                 description: markCompleted.description
             });
         }
-
+        // sets markCompleted back to the default state after 3 seconds
         const timer = setTimeout(() => {
             setMarkCompleted({
                 name: "",
@@ -42,11 +46,14 @@ const WeekPlan = ({ week, weekNum }) => {
         return () => clearTimeout(timer);
     }, [markCompleted]);
 
+    // runs after completedWorkouts has been changed 
     useEffect(() => {
+        // checks if a workout has been added to the completedWorkouts state
         if (completedWorkouts.workoutsCompleted.length !==  user.workoutsCompleted.length)
         updateWorkoutsCompleted(completedWorkouts, user._id);
     }, [completedWorkouts]);
 
+    // runs when user clicks Mark workout completed and add to history
     const handleClick = (name, description) => {
         setMarkCompleted({
             name: name,
@@ -56,7 +63,7 @@ const WeekPlan = ({ week, weekNum }) => {
 
     const { run1, run2, run3 } = week;
     
-    console.log(weekNum);
+    
     return (
         <>
 
@@ -146,6 +153,11 @@ const WeekPlan = ({ week, weekNum }) => {
         </div>
         </>
     )
+}
+
+WeekPlan.propTypes = {
+    week: PropTypes.object,
+    weekNum: PropTypes.number
 }
 
 export default WeekPlan

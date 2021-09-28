@@ -9,6 +9,7 @@ const Forum = () => {
     const forumContext = useContext(ForumContext);
     const authContext = useContext(AuthContext);
 
+    // runs on mount
     useEffect(() => {
         authContext.loadUser();
         forumContext.getMessages();
@@ -25,13 +26,9 @@ const Forum = () => {
 
     return (
         <>
-
         <div className="outermessagecontainer">
             {topics.map((individualTopic) => (
-                <>
                     <Messages key={individualTopic._id} individualTopic={individualTopic}/>
-                    
-                </>
             ))}
 
             {showAddTopicForum && <div className="workoutscontainer">
@@ -41,7 +38,6 @@ const Forum = () => {
             
             <button className="workoutbutton addtopicbutton" onClick={showTheTopicForum}>{showAddTopicForum ? 'Cancel' : 'Create new topic'}</button>
         </div>
-
         </>
     )
 }

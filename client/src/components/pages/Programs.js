@@ -17,6 +17,7 @@ const Programs = () => {
     const { programs, getRunning } = programContext;
     const { getWorkouts } = workoutContext;
 
+    // loads the user, gets the programs and gets the workouts
     useEffect(() => {
         authContext.loadUser();
         getRunning();
@@ -30,22 +31,25 @@ const Programs = () => {
 
     const [viewForm, setViewForm] = useState(false);
 
+    // cancels the form
+    const cancelViewForm = () => {
+        setViewForm(false);
+    }
+
     const handleClick = () => {
         setViewForm(!viewForm);
     }
 
-    console.log(Object.keys(newPrograms).length);
-
     return (
         <div className="">
             
-            {programs.map(individualProgram => (
-                individualProgram.name === "Coach to 5K" &&
+            {programs && programs.map(individualProgram => (
+                individualProgram.name === "Couch to 5K" &&
                 <ProgramItem key={individualProgram._id} individualProgram={individualProgram}/>
             ))}
 
-            {programs.length > 1 && programs.map(individualProgram => (
-                individualProgram.name !== "Coach to 5K" &&
+            {programs && programs.length > 1 && programs.map(individualProgram => (
+                individualProgram.name !== "Couch to 5K" &&
                 <HiitProgramItem key={individualProgram._id} individualProgram={individualProgram}/>
             ))}
             
@@ -53,7 +57,7 @@ const Programs = () => {
                 <h2>Create A Program</h2>
                 <p>You can create your own program for the week by adding in the name of the 
                     workout and the description of the workout into the different days.</p>
-                {viewForm && <NewprogramForum />}
+                {viewForm && <NewprogramForum cancelForm={cancelViewForm}/>}
                 {viewForm ? <button className="workoutbutton" onClick={handleClick}>Cancel</button> : <button className="workoutbutton" onClick={handleClick}>Create Program</button>}
                 
             </div>

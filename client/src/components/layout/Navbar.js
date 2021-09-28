@@ -17,6 +17,7 @@ const Navbar = ({ title }) => {
     const adminContext = useContext(AdminContext);
     const messageCoachContext = useContext(MessageCoachContext);
 
+    // state to hold if the navbar should display on a small screen
     const [displayMobile, setDisplayMoblie] = useState(true);
 
     const { isAuthenticated, logout } = authContext;
@@ -26,11 +27,14 @@ const Navbar = ({ title }) => {
     const { clearUsers } = adminContext;
     const { clearMessages } = messageCoachContext;
 
+    // this method is called when user clicks on the navbar 
     const handleClick = () => {
         setDisplayMoblie(!displayMobile);
         
     }
 
+    // when a navigation is clicked, this code will cause the navbar to disappear again 
+    // on a small screen
     const navClick = () => {
         if (displayMobile === false) {
             setDisplayMoblie(true);
@@ -38,6 +42,7 @@ const Navbar = ({ title }) => {
     }    
 
     useEffect(()=> {
+        // checks if there is a user and the user is a normal type of user
         if (authContext.user && authContext.user.userType === "1") {
             const mobilediv = document.getElementById("mobileview");
         if (displayMobile){
@@ -46,7 +51,6 @@ const Navbar = ({ title }) => {
             mobilediv.classList.remove("nodisplay");
         }
         
-        console.log(displayMobile);
         } 
         
     })

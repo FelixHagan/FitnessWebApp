@@ -10,6 +10,7 @@ const HiitPlan = () => {
     const authContext = useContext(AuthContext);
     const workoutContext = useContext(WorkoutContext);
 
+    // runs on mount to load the user and get the workouts 
     useEffect(() => {
         authContext.loadUser();
         workoutContext.getWorkouts();

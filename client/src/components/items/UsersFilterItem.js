@@ -15,6 +15,7 @@ const UsersFilterItem = () => {
 
     const onChange = e => {
         if(text.current.value !== ''){
+            // calls the filterUsers method
             filterUsers(e.target.value);
         } else {
             clearFilter();

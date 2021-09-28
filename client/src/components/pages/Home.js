@@ -10,6 +10,7 @@ import AuthContext from '../../context/auth/authContext';
 const Home = () => {
     const authContext = useContext(AuthContext);
 
+    // loads user on mount
     useEffect(() => {
         authContext.loadUser();
         // eslint-disable-next-line

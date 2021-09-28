@@ -1,6 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react'
-import { useLocation } from 'react-router-dom'
-import WorkoutContext from '../../context/workout/workoutContext';
+import { useLocation } from 'react-router-dom';
 import AuthContext from '../../context/auth/authContext';
 import { Link } from 'react-router-dom';
 import YoutubeItem from './YoutubeItem';
@@ -12,6 +11,7 @@ const TimerItem = () => {
 
     const { loadUser, updateWorkoutsCompleted, user } = authContext;
 
+    // runs on mount
     useEffect(() => {
         loadUser();
         updateTheWorkouts({
@@ -21,12 +21,14 @@ const TimerItem = () => {
         // eslint-disable-next-line
     }, []);
 
+    // defaults the completedWorkouts state to the workouts that have been completed by the user
     const [completedWorkouts, setCompletedWorkouts] = useState({
         workoutsCompleted: user.workoutsCompleted
     });
 
     const { workoutsCompleted } = completedWorkouts;
 
+    // adds another workout to the completedWorkouts state
     const updateTheWorkouts = (workout) => {
         setCompletedWorkouts({
             ...completedWorkouts,
@@ -34,26 +36,18 @@ const TimerItem = () => {
         });
     }
 
-    // const { id, name, fitnessLevel, description, startWorkout, 
-    // currentExerciseOn, exercises } = workout;
-
-    const workoutContext = useContext(WorkoutContext);
-
+    // state to hold what current exercise the user is on in the workout
     const [currentWorkoutOn, setCurrentWorkoutOn] = useState(0);
 
-
+    // two arrays to hold the names and urls of the exercises in the workout
     let exercisesNames = [];
     let exerciseVideoUrl = [];
     workout.exercises.map((exercise) => {
         exercisesNames.push(exercise.name);
         exerciseVideoUrl.push(exercise.videoUrl);
     })
-
-    console.log(exercisesNames);
-    console.log(exerciseVideoUrl);
-
-    console.log(workout);
     
+    // timmer - runs after currentWorkoutOn changes
     useEffect(() => {
         let timer;
         if (currentWorkoutOn < 10){
@@ -71,14 +65,12 @@ const TimerItem = () => {
             }
     }, [currentWorkoutOn]);
 
-    console.log(currentWorkoutOn);
-
     return (
         <div className="workoutscontainer">
             {currentWorkoutOn < 10 ? (<div className="workoutbox">
                 <h1>{workout.name} Workout</h1>
                 <YoutubeItem exerciseVideoUrl={exerciseVideoUrl[currentWorkoutOn]}/>
-                <h2>30 seconds of {exercisesNames[currentWorkoutOn]}</h2>
+                <h2>10 seconds of {exercisesNames[currentWorkoutOn]}</h2>
                 <Link className="workoutbutton" to='/workouts'>Cancel</Link>
             </div>) : (<div className="workoutbox"><h1>Workout finished</h1>
             <Link className="workoutbutton" to='/workouts'>Back to workouts</Link></div>)}

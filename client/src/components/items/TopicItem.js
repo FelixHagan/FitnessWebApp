@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import ForumContext from '../../context/forum/forumContext';
+import PropTypes from 'prop-types';
 
 const TopicItem = ({ individualTopic }) => {
     const { user, description, date } = individualTopic;
@@ -7,6 +8,7 @@ const TopicItem = ({ individualTopic }) => {
 
     const { loading } = forumContext;
 
+    // changes the date into a more readable format
     let year;
     if (!loading){
         year = date.split("T");
@@ -24,6 +26,10 @@ const TopicItem = ({ individualTopic }) => {
             </div>
         </div>
     )
+}
+
+TopicItem.propTypes = {
+    individualTopic: PropTypes.object
 }
 
 export default TopicItem

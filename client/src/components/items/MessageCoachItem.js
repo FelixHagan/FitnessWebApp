@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 
 const MessageCoachItem = ({ theMessage }) => {
-    const { message, reply, date} = theMessage;
+    const { message, reply } = theMessage;
 
     return (
         <>

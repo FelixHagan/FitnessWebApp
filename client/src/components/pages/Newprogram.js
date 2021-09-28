@@ -11,6 +11,7 @@ const NewProgram = () => {
     const { newPrograms, getProgram, loading } = createProgramContext;
     const { loadUser } = authContext;
     
+    // loads the user and gets any programs created by the user 
     useEffect(() => {
         loadUser();
         getProgram();
