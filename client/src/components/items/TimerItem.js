@@ -46,17 +46,17 @@ const TimerItem = () => {
         exercisesNames.push(exercise.name);
         exerciseVideoUrl.push(exercise.videoUrl);
     })
-    
+    console.log(exercisesNames.length);
     // timmer - runs after currentWorkoutOn changes
     useEffect(() => {
         let timer;
-        if (currentWorkoutOn < 10){
+        if (currentWorkoutOn < (exercisesNames.length)){
             timer = setTimeout(() => {
             setCurrentWorkoutOn(currentWorkoutOn + 1);
 
             }, 10000)
             
-        } else if (currentWorkoutOn === 10) {
+        } else if (currentWorkoutOn === exercisesNames.length) {
             updateWorkoutsCompleted(completedWorkouts, user._id);
         }
 
@@ -67,7 +67,7 @@ const TimerItem = () => {
 
     return (
         <div className="workoutscontainer">
-            {currentWorkoutOn < 10 ? (<div className="workoutbox">
+            {currentWorkoutOn < exercisesNames.length ? (<div className="workoutbox">
                 <h1>{workout.name} Workout</h1>
                 <YoutubeItem exerciseVideoUrl={exerciseVideoUrl[currentWorkoutOn]}/>
                 <h2>10 seconds of {exercisesNames[currentWorkoutOn]}</h2>
