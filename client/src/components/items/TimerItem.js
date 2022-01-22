@@ -46,7 +46,7 @@ const TimerItem = () => {
         exercisesNames.push(exercise.name);
         exerciseVideoUrl.push(exercise.videoUrl);
     })
-    console.log(exercisesNames.length);
+    
     // timmer - runs after currentWorkoutOn changes
     useEffect(() => {
         let timer;

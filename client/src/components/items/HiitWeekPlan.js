@@ -52,7 +52,7 @@ const HiitWeekPlan = ({ week, weekNum }) => {
                 
                 {markWorkout !== "workout1" ? (<button className="workoutbutton" onClick={() => handleClick("workout1", run1.name)}>View Description</button>) : 
                 <>
-                <p>{run2.description}</p>
+                <p>{run1.description}</p>
                 <Link className="workoutbutton" to={{
                     pathname: '/timer',
                     state: {

@@ -79,7 +79,7 @@ const WeekPlan = ({ week, weekNum }) => {
             
             <div className="day">
                 <h3>{run1.name}</h3>
-                <p>{run2.description}</p>
+                <p>{run1.description}</p>
                 {markCompleted.name !== "" && markCompleted.name === run1.name ? (<p>The workout has been added to your history of completed workouts.</p>)
                 : (<button className="workoutbutton" onClick={() => handleClick(run1.name, run1.description)}>
                     Mark workout completed and add to history
