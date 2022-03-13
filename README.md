@@ -46,6 +46,8 @@ npm run client
 
 - The user can follow workouts
 
+<img width="674" alt="image" src="https://user-images.githubusercontent.com/98223195/158083497-bd67db02-0c5a-4f33-ab8a-ff7f1faf6da5.png">
+
 - The user can follow training programs and create, update and delete their own training programs
 
 - The user has access to the forum and also has the ability to message a coach
