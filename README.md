@@ -50,6 +50,8 @@ npm run client
 
 - The user can follow training programs and create, update and delete their own training programs
 
+<img width="645" alt="image" src="https://user-images.githubusercontent.com/98223195/158083576-c39a0d44-7fdb-46f2-9d06-0a4c3bb55214.png">
+
 - The user has access to the forum and also has the ability to message a coach
 
 - The coach and admin page to give a user of type coach or of type administrator extra functionality
