@@ -54,4 +54,6 @@ npm run client
 
 - The user has access to the forum and also has the ability to message a coach
 
+<img width="536" alt="image" src="https://user-images.githubusercontent.com/98223195/158083636-57a60c90-dac6-4389-a8e3-085ac73129a2.png">
+
 - The coach and admin page to give a user of type coach or of type administrator extra functionality
