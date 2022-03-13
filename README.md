@@ -22,3 +22,32 @@ A fitness web app was developed in order help give guidance and motivate the use
 
 ## Usage
 
+To clone the fitness app you will need to have Git and Node.js (which comes with npm) installed on your computer.
+
+Install dependancies
+
+```js
+npm install
+cd client
+npm install
+```
+
+### Run Server
+```js
+// run express on :5000 and react on :3000
+npm run dev
+// Express API only on :5000
+npm run server
+// React Client only on :3000
+npm run client
+```
+
+## Fitness Web App Screenshots
+
+- The user can follow workouts
+
+- The user can follow training programs and create, update and delete their own training programs
+
+- The user has access to the forum and also has the ability to message a coach
+
+- The coach and admin page to give a user of type coach or of type administrator extra functionality
