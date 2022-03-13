@@ -46,16 +46,16 @@ npm run client
 
 - The user can follow workouts
 
-<img width="674" alt="image" src="https://user-images.githubusercontent.com/98223195/158083497-bd67db02-0c5a-4f33-ab8a-ff7f1faf6da5.png">
+<img width="750" alt="image" src="https://user-images.githubusercontent.com/98223195/158083497-bd67db02-0c5a-4f33-ab8a-ff7f1faf6da5.png">
 
 - The user can follow training programs and create, update and delete their own training programs
 
-<img width="645" alt="image" src="https://user-images.githubusercontent.com/98223195/158083576-c39a0d44-7fdb-46f2-9d06-0a4c3bb55214.png">
+<img width="750" alt="image" src="https://user-images.githubusercontent.com/98223195/158083576-c39a0d44-7fdb-46f2-9d06-0a4c3bb55214.png">
 
 - The user has access to the forum and also has the ability to message a coach
 
-<img width="536" alt="image" src="https://user-images.githubusercontent.com/98223195/158083636-57a60c90-dac6-4389-a8e3-085ac73129a2.png">
+<img width="750" alt="image" src="https://user-images.githubusercontent.com/98223195/158083636-57a60c90-dac6-4389-a8e3-085ac73129a2.png">
 
 - The coach and admin page to give a user of type coach or of type administrator extra functionality
 
-<img width="715" alt="image" src="https://user-images.githubusercontent.com/98223195/158083671-3dc3e777-f83d-40fa-9853-8fd312a1155f.png">
+<img width="750" alt="image" src="https://user-images.githubusercontent.com/98223195/158083671-3dc3e777-f83d-40fa-9853-8fd312a1155f.png">
